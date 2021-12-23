@@ -1,14 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { AppBar, Avatar, Typography, Toolbar, Button} from '@material-ui/core';
-import { Link, useNavigation, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import useStyles from './styles';
+import {LOGOUT} from '../../constants/actionTypes';
 
+import {useDispatch} from 'react-redux';
 
 const Navbar = () => {
 
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    const user = null;
+    console.log(user);
+
+
+    const logOut = ()=>{
+        dispatch({type:LOGOUT});
+
+        navigate('/');
+
+        setUser(null);
+    }
+
+    useEffect(()=>{
+        const token = user?.token;
+
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    },[location]);
 
     return(
 
@@ -24,7 +45,7 @@ const Navbar = () => {
                             {user.result.name.charAt(0)}
                         </Avatar>
                         <Typography className={classes.userName} variant="h6">{user.result.name}</Typography>
-                        <Button variant="contained" className={classes.logout} color="secondary" onClick={()=>{}}>LogOut</Button>
+                        <Button variant="contained" className={classes.logout} color="secondary" onClick={()=>logOut()}>LogOut</Button>
                     </div>
                 ): (
                     <div className={classes.profile}>

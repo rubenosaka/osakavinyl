@@ -23,14 +23,14 @@ const Vinyl = ({vinyl, setCurrentId}) =>{
             </div>
             <div className={classes.overlay2}>
                 <Button style={{ color: 'white'}} size="small" onClick={()=> setCurrentId(vinyl._id)}>
-                    <MoreHorizIcon fonySize="default"></MoreHorizIcon>
+                    <MoreHorizIcon fontSize="medium"/>
                 </Button>
             </div>
             <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary" component="h2">{vinyl.genres.map((genre) => genre)}</Typography>
                 {vinyl.description}
             </div>
-            <Typography className={classes.title} variant="h5" gutterButton>{vinyl.name}{vinyl.year ? ` (${vinyl.year})` : ''}</Typography>
+            <Typography className={classes.title} variant="h5" gutterBottom>{vinyl.name}{vinyl.year ? ` (${vinyl.year})` : ''}</Typography>
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">{vinyl.artist}</Typography>
 
