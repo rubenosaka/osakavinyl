@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const vinylSchema = mongoose.Schema({
     name: String,
+    album_name: String,
     artist: String,
     description: String,
     genres: [String],
@@ -24,6 +25,7 @@ const vinylSchema = mongoose.Schema({
     year: {
         type: Number,
     },
+    instagram_link: String
 });
 
 const Vinyl = mongoose.model('Vinyl', vinylSchema);

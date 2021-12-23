@@ -11,10 +11,10 @@ app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
-import common from './routes/common.js';
+// import common from './routes/common.js';
 import vinylRoutes from './routes/vinyl.js';
 
-app.use('/', common);
+// // app.use('/', common);
 app.use('/vinyl', vinylRoutes);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
