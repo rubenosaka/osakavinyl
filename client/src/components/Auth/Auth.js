@@ -30,9 +30,9 @@ const Auth = () => {
 
         console.log(form);
         if (isSignup) {
-            dispatch(signIn(form, navigate));
-        } else {
             dispatch(signUp(form, navigate));
+        } else {
+            dispatch(signIn(form, navigate));
         }
     };
 
@@ -65,7 +65,7 @@ const Auth = () => {
 
     const switchMode = () =>{
         setIsSignup((prevIsSignup) => !prevIsSignup);
-        handleShowPassword(false);
+        setShowPassword(false);
     }
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword)

@@ -90,9 +90,20 @@ export const likeVinyl = async (req, res) => {
 
         if(!Mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No vinyl with that ID');
 
+        if(!req.userId)  return res.status(500).send('Unanuthenticated');
+
         const vinyl = await Vinyl.findById(id);
 
-        const updatedVinyl = await Vinyl.findByIdAndUpdate(id, { likeCount: vinyl.likeCount + 1}, { new : true });
+        const index = vinyl.findIndex((id) => id = String(req.userId));
+
+        if(index === -1){
+            vinyl.likes.push(req.userId);
+        }else{
+            vinyl.likes = vinyl.likes.filter((id) => id !== String(req.userId));
+        }
+
+        const updatedVinyl = await Vinyl.findByIdAndUpdate(id, vinyl, { new : true });
+
     
         res.json(updatedVinyl);
         

@@ -5,9 +5,9 @@ export const signIn = (form, navigate)=>async (dispatch) => {
 
     try{
 
-        // const { data } = await api.fetchVinylList();
+        const { data } = await api.signIn(form);
 
-        // dispatch({ type: AUTH, payload: data })
+        dispatch({ type: AUTH, data })
 
         navigate('/');
 
@@ -24,11 +24,12 @@ export const signUp = (form, navigate)=>async (dispatch) => {
 
     try{
 
-        // const { data } = await api.fetchVinylList();
+        const { data } = await api.signUp(form);
 
-        // dispatch({ type: AUTH, payload: data })
+        dispatch({ type: AUTH, data })
 
         navigate('/');
+
 
     }catch(error){
 

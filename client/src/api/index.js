@@ -1,9 +1,12 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/vinyl';
+const API = axios.create({baseURL: 'http://localhost:5000'});
 
-export const fetchVinylList =  () => axios.get(url);
-export const createVinyl = (newVinyl) => axios.post(url, newVinyl);
-export const updateVinyl = (id, updatedVinyl) => axios.patch(`${url}/${id}`, updatedVinyl);
-export const deleteVinyl = (id) => axios.delete(`${url}/${id}`);
-export const likeVinyl = (id) => axios.patch(`${url}/${id}/likeVinyl`);
+export const fetchVinylList =  () => API.get('/vinyl');
+export const createVinyl = (newVinyl) => API.post('/vinyl', newVinyl);
+export const updateVinyl = (id, updatedVinyl) => API.patch(`/vinyl/${id}`, updatedVinyl);
+export const deleteVinyl = (id) => API.delete(`/vinyl/${id}`);
+export const likeVinyl = (id) => API.patch(`/vinyl/${id}/likeVinyl`);
+
+export const signIn = (form) => API.post('/users/signIn', form);
+export const signUp = (form) => API.post('/users/signUp', form);

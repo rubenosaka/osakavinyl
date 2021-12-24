@@ -18,9 +18,9 @@ const vinylSchema = mongoose.Schema({
     image_osaka: String,
     image_beer: String,
     image_vinyl: String,
-    likeCount: {
-        type: Number,
-        default: 0
+    likes: {
+        type: [String],
+        default: []
     },
     year: {
         type: Number,

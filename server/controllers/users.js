@@ -2,11 +2,11 @@ import Mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-import User from '../models/user.js';
+import Users from '../models/user.js';
 
 export const getUsers = async (req, res) => {
     try {
-        const allUser = await User.find();
+        const allUser = await Users.find();
 
         res.status(200).json(allUser);
 
@@ -23,7 +23,7 @@ export const signIn = async (req, res) => {
 
     try {
 
-        const existingUser = await User.findOne({email});
+        const existingUser = await Users.findOne({email});
 
         if(!existingUser) return res.status(404).json({message: "User doesn't exist."});
 
@@ -52,6 +52,8 @@ export const signUp = async (req, res) => {
 
     try {
 
+        console.log(email)
+
         const existingUser = await Users.findOne({email});
 
         if(existingUser) return res.status(400).json({message: "User already exist."});
@@ -60,11 +62,15 @@ export const signUp = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const result = await User.create({email, password:hashedPassword, firstName, lastName});
+        const result = await Users.create({email, password:hashedPassword, firstName, lastName});
 
-        const token = jwt.sign({email: result.email, id: result._id}, process.env.SECRET, {expiresIn: "1h"});
+        console.log(process.env.SECRET);
 
-        res.status(200).json({result: result, token});
+        const token = jwt.sign({email: result.email, id: result._id}, process.env.SECRET, {expiresIn: "1h"});     
+        
+        console.log(token);
+
+        res.status(201).json({result, token});
 
     }catch(error){
 

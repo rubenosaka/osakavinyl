@@ -16,7 +16,7 @@ import usersRoutes from './routes/users.js';
 import vinylRoutes from './routes/vinyl.js';
 
 // // app.use('/', common);
-app.use('/users', usersRoutes);
+app.use('/users', usersRoutes); 
 app.use('/vinyl', vinylRoutes);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
