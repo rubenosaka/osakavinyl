@@ -6,7 +6,7 @@ import { GoogleLogin } from 'react-google-login';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import Icon from './icon';
-// import { signin, signup } from '../../actions/auth';
+import { signIn, signUp } from '../../actions/auth';
 import { AUTH } from '../../constants/actionTypes';
 import useStyles from './styles';
 import Input from './Input';
@@ -27,12 +27,18 @@ const Auth = () => {
    
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (isSignup) {
-        //     dispatch(signup(form, history));
-        // } else {
-        //     dispatch(signin(form, history));
-        // }
+
+        console.log(form);
+        if (isSignup) {
+            dispatch(signIn(form, navigate));
+        } else {
+            dispatch(signUp(form, navigate));
+        }
     };
+
+    const handleChange = (e) => {
+        setForm({...form, [e.target.name]: e.target.value})
+    }
 
     const googleSuccess = async (res) => {
         console.log(res);
@@ -55,9 +61,7 @@ const Auth = () => {
     
       const googleError = () => alert('Google Sign In was unsuccessful. Try again later');
 
-    const handleChange = (e) => {
-
-    }
+ 
 
     const switchMode = () =>{
         setIsSignup((prevIsSignup) => !prevIsSignup);
