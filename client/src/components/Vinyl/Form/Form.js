@@ -10,6 +10,7 @@ const Form = ({currentId, setCurrentId}) =>{
 
     const classes = useStyles();
     const vinylItem = useSelector((state)=> currentId ? state.vinyl.find(p => p._id === currentId ) : null);
+
     const [vinylData, setVinylData] = useState({
         name: '',
         artist: '',
@@ -47,6 +48,7 @@ const Form = ({currentId, setCurrentId}) =>{
      
     }
     
+
 
     return (
         <Paper className={classes.paper}>

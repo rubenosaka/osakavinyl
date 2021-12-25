@@ -11,6 +11,7 @@ const List = ({setCurrentId}) =>{
     console.log(vinylList);
 
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem('profile'));
 
     return (
         !vinylList.length ? <CircularProgress/> : (
@@ -18,7 +19,7 @@ const List = ({setCurrentId}) =>{
                 {
                     vinylList.map((vinyl)=>(
 
-                        <Grid key={vinyl._id} item xs={12} sm={6}>
+                        <Grid key={vinyl._id} item xs={12} sm={!user ? 3 : 4}>
                             <Vinyl vinyl={vinyl} setCurrentId={setCurrentId}>
 
                             </Vinyl>

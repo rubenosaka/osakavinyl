@@ -15,6 +15,7 @@ const VinylList = () => {
     const [currentId, setCurrentId] = useState(null);
     // const classes = useStyles();
     const dispatch = useDispatch();
+    const user = JSON.parse(localStorage.getItem('profile'));
 
     useEffect(()=>{
         dispatch(getVinylList()); 
@@ -24,12 +25,20 @@ const VinylList = () => {
         <Grow in>
             <Container>
                 <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}> 
-                    <Grid item xs={12} sm={7}>
+                    <Grid item xs={12} sm={!user ? 12 : 8}>
                         <List setCurrentId={setCurrentId} />
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Form currentId={currentId} setCurrentId={setCurrentId}/>
-                    </Grid>
+                    {
+                        user ? (
+                   
+                            <Grid item xs={12} sm={4}>
+                                <Form currentId={currentId} setCurrentId={setCurrentId}/>
+                            </Grid>
+                        
+                        ):(
+                            <></>
+                        )
+                    }
                 </Grid>
             </Container>
         </Grow> 

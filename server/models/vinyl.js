@@ -7,6 +7,7 @@ const vinylSchema = mongoose.Schema({
     description: String,
     genres: [String],
     discography: String,
+    uid: mongoose.ObjectId,
     copies: {
         type: Number,
         default: 0

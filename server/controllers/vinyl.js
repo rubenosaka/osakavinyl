@@ -16,11 +16,13 @@ export const getVinyl = async (req, res) => {
 
 export const createVinyl = async (req, res) => {
 
-    const vinyl = req.body;
-
-    const newVinyl = new Vinyl(vinyl);
+    const vinyl = req.body;  
       
     try {
+          
+        if(!req.userId)  return res.status(500).send('Unanuthenticated');
+
+        const newVinyl = new Vinyl( {... vinyl, uid: req.userId, createdAt: new Date().toISOString()});
 
         await newVinyl.save();
 
@@ -43,6 +45,8 @@ export const updateVinyl = async (req, res) => {
     try {
 
         if(!Mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No vinyl with that ID');
+        
+        if(!req.userId)  return res.status(500).send('Unanuthenticated');
 
         const updatedVinyl = await Vinyl.findByIdAndUpdate(_id, {...vinyl, _id}, { new:true });
     
