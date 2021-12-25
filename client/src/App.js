@@ -1,27 +1,40 @@
 import React from 'react';
-import { Container} from '@material-ui/core';
 
 import Navbar from './components/Navbar/Navbar';
 import VinylHome from './components/VinylHome/VinylHome';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Auth from './components/Auth/Auth';
 
+import "./App.scss";
 
-const App = () => {
+const App = () => {  
 
     return (
         
         <BrowserRouter>
-            <Container maxidth="lg">
+
+            <div class="osaka-vinyl">
+                
                 <Navbar/>
-                <Routes> 
-                    <Route path="/" exact element={<VinylHome />}/>
-                    <Route path="/auth" element={<Auth/>}/> 
-                </Routes>
-            </Container>
+                
+                <div className="container-fluid">
+              
+                    <Routes> 
+
+                        <Route path="/" exact element={<VinylHome />}/>
+                        <Route path="/auth" element={<Auth/>}/>
+                        
+                    </Routes>
+                            
+                </div>
+                             
+            </div>
+
         </BrowserRouter>
+   
 
     );
 };
 
 export default App;
+

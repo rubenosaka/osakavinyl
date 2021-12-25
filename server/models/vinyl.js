@@ -12,10 +12,6 @@ const vinylSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    createdAt: {
-        type: Date,
-        default: new Date()
-    },
     image_osaka: String,
     image_beer: String,
     image_vinyl: String,
@@ -26,8 +22,12 @@ const vinylSchema = mongoose.Schema({
     year: {
         type: Number,
     },
-    instagram_link: String
-});
+    instagram_link: String,
+    deletedAt: {
+        type: Date,
+        default: null,
+    }
+}, { collection: 'vinyl' });
 
 const Vinyl = mongoose.model('Vinyl', vinylSchema);
 
