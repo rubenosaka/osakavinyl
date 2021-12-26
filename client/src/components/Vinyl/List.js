@@ -14,29 +14,34 @@ const List = ({setCurrentId}) =>{
     const user = JSON.parse(localStorage.getItem('profile'));
 
     return (
-        <section className="ov-section">
-            
-            {
-                !vinylList.length ? <span>Sorry but there are no results</span> : vinylList.length > 0 ? (
-                                
-                    <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-                        {
-                            vinylList.map((vinyl)=>(
+        <section className="ov-sub-section">
 
-                                <Grid key={vinyl._id} item xs={12} sm={!user ? 3 : 4}>
-                                    <Vinyl vinyl={vinyl} setCurrentId={setCurrentId}>
+            <div class="ov-box">
 
-                                    </Vinyl>
-                                </Grid>
-                            ))
-                        }
-                    </Grid>
-                ) : (
-                    <Paper>
-                        There are no results
-                    </Paper>
-                )
-            }
+                {
+                    !vinylList.length ? <span>Sorry but there are no results</span> : vinylList.length > 0 ? (
+                                    
+                        <div className="row">
+                            {
+                                vinylList.map((vinyl)=>(
+
+                                    <div key={vinyl._id} className={!user ? "col-sm-3" : "col-sm-4"}>
+                                        <Vinyl vinyl={vinyl} setCurrentId={setCurrentId}>
+
+                                        </Vinyl>
+                                    </div>
+                                ))
+                            }
+                        </div>
+
+                    ) : (
+                        <Paper>
+                            There are no results
+                        </Paper>
+                    )
+                }
+
+            </div>            
             
         </section>
     );

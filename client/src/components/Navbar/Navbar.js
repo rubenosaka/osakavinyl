@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { AppBar, Avatar, Typography, Toolbar, Button} from '@material-ui/core';
-import { Link, useNavigate, useLocation, Navigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import useStyles from './styles';
 import {LOGOUT} from '../../constants/actionTypes';
 
@@ -43,7 +42,7 @@ const Navbar = () => {
 
                         <div class="col-sm-3">
 
-                            <h1>Osaka Vinyl</h1>
+                            <h1><a href="/">Osaka Vinyl</a></h1>
 
                         </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Grow, Grid} from '@material-ui/core';
+import { Grow } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 // import useStyles from './styles';
@@ -23,24 +23,24 @@ const VinylList = () => {
 
     return (
         <Grow in>
-            <Container>
-                <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}> 
-                    <Grid item xs={12} sm={!user ? 12 : 8}>
+            <section className="ov-section">
+                <div className="row"> 
+                    <div className={!user ? "col-sm-12" : "col-sm-8"}>
                         <List setCurrentId={setCurrentId} />
-                    </Grid>
+                    </div>
                     {
                         user ? (
                    
-                            <Grid item xs={12} sm={4}>
+                            <div className={!user ? "col-sm-12" : "col-sm-4"}>
                                 <Form currentId={currentId} setCurrentId={setCurrentId}/>
-                            </Grid>
+                            </div>
                         
                         ):(
                             <></>
                         )
                     }
-                </Grid>
-            </Container>
+                </div>
+            </section>
         </Grow> 
     );
    
