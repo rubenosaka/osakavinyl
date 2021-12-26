@@ -15,23 +15,27 @@ const App = () => {
 
             <div className="osaka-vinyl">
                 
-                <Navbar/>
-                
-                <div className="container-fluid">
-              
-                    <Routes> 
-
-                        <Route path="/" exact element={<VinylHome />}/>
-                        <Route path="/auth" element={<Auth/>}/>
-                        
-                    </Routes>
-                            
+                <div className="ov-sidebar">
+                    <Navbar/>
                 </div>
+                <div className="ov-content">
+
+                    <div className="container-fluid">
+                            
+                        <Routes> 
+
+                            <Route path="/" exact element={<VinylHome />}/>
+                            <Route path="/auth" element={<Auth/>}/>
+                            
+                        </Routes>
+                                    
+                    </div>
+
+                </div>   
                              
             </div>
 
-        </BrowserRouter>
-   
+        </BrowserRouter>   
 
     );
 };

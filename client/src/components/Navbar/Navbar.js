@@ -1,22 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import useStyles from './styles';
 import {LOGOUT} from '../../constants/actionTypes';
 
 import {useDispatch} from 'react-redux';
 import osakaAvatar from '../../assets/img/osaka_vinyl_avatar.jpg';
+import AboutMe from '../AboutMe/AboutMe';
 
 const Navbar = () => {
 
-    const classes = useStyles();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const [consoleValue, setConsoleValue] = useState('_No activity');
-
-    console.log(user);
-
+    const [extraData, setExtraData] = useState(false);
 
     const logOut = ()=>{
         dispatch({type:LOGOUT});
@@ -29,6 +26,10 @@ const Navbar = () => {
     
     const handleHover = (value)=>{
         setConsoleValue(value ? '_'+value : 'No activity');
+    }
+
+    const handleExtra = (component)=>{
+        setExtraData(component ? component : false);
     }
 
     useEffect(()=>{
@@ -76,14 +77,9 @@ const Navbar = () => {
                                         <span className="ov-button ov-button--logout" onClick={()=>logOut()}><i class="fa-solid fa-power-off"></i></span>     
                                     </li>
 
-                                </ul>
-
-                                
-
-                                
+                                </ul>                          
                             
-                            </div>                         
-                        
+                            </div>                       
                         
                         ): (
 
@@ -114,7 +110,7 @@ const Navbar = () => {
                         <li onMouseEnter={()=>handleHover("Spotify Panel")} onMouseLeave={()=>handleHover("No Activity")}><i className="fab fa-spotify"></i></li>
                         <li onMouseEnter={()=>handleHover("Horror Movies")} onMouseLeave={()=>handleHover("No Activity")}><i className="fas fa-film"></i></li>
                         <li onMouseEnter={()=>handleHover("Musician Section")} onMouseLeave={()=>handleHover("No Activity")}><i class="fa-solid fa-microphone-lines"></i></li>
-                        <li className="ov-list--image" onMouseEnter={()=>handleHover("Vinyl Collection")} onMouseLeave={()=>handleHover("No Activity")}> 
+                        <li className="ov-list--image" onMouseEnter={()=>{handleHover("About Me"); handleExtra(<AboutMe/>)}} onMouseLeave={()=>{handleHover("No Activity"); handleExtra(false)}}> 
                             <img src={osakaAvatar}/>
                         </li>
                     </ul>    
@@ -124,6 +120,14 @@ const Navbar = () => {
             <div class="ov-header__console">
                 {consoleValue}
             </div>
+            {
+                extraData ?? (
+                    <div className="ov-header__data">
+                        {extraData}
+                    </div>
+                )   
+            }
+
            
         </header>
     )
