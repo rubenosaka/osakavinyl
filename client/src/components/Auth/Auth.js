@@ -70,13 +70,13 @@ const Auth = () => {
 
     return (
 
-        <section class="ov-section">
+        <section className="ov-section">
 
-            <div class="row justify-content-md-center">
+            <div className="row justify-content-md-center">
 
-                <div class="col-lg-3 col-md-4 col-sm-5">
+                <div className="col-lg-3 col-md-4 col-sm-5">
 
-                    <div class="ov-box--form">
+                    <div className="ov-box--form">
 
                         <Avatar>
                             <LockOutlinedIcon/>

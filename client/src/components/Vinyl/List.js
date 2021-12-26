@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Grid, CircularProgress, Paper } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import useStyles from './Vinyl/styles';
 
 import Vinyl from './Vinyl/Vinyl'
@@ -16,7 +16,7 @@ const List = ({setCurrentId}) =>{
     return (
         <section className="ov-sub-section">
 
-            <div class="ov-box">
+            <div className="ov-box">
 
                 {
                     !vinylList.length ? <span>Sorry but there are no results</span> : vinylList.length > 0 ? (

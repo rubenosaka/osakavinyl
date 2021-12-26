@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import './assets/scss/libraries/bootstrap/bootstrap.scss';
+@import './assets/scss/libraries/fontawesome/fontawesome.scss';
+@import './assets/scss/libraries/fontawesome/solid.scss';
+@import './assets/scss/libraries/fontawesome/brands.scss';
 
 body{
     background-color: #2E2157;
@@ -33,7 +37,6 @@ body{
     }
 
 }
-
 
 
 @import "./assets/scss/header";

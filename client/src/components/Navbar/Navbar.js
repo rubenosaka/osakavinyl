@@ -4,6 +4,7 @@ import useStyles from './styles';
 import {LOGOUT} from '../../constants/actionTypes';
 
 import {useDispatch} from 'react-redux';
+import osakaAvatar from '../../assets/img/osaka_vinyl_avatar.jpg';
 
 const Navbar = () => {
 
@@ -12,6 +13,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [consoleValue, setConsoleValue] = useState('_No activity');
 
     console.log(user);
 
@@ -24,6 +26,11 @@ const Navbar = () => {
         setUser(null);
     }
 
+    
+    const handleHover = (value)=>{
+        setConsoleValue(value ? '_'+value : 'No activity');
+    }
+
     useEffect(()=>{
         const token = user?.token;
 
@@ -34,57 +41,89 @@ const Navbar = () => {
 
         <header className="ov-header">
 
-            <nav class="ov-header__nav">
+            <nav className="ov-header__nav">
 
-                <div class="container-fluid">
-                
-                    <div class="row">
+                <div className="ov-header__nav__primary">
+                                   
+                    <div className="ov-header__nav__primary__logo">                       
 
-                        <div class="col-sm-3">
-
-                            <h1><a href="/">Osaka Vinyl</a></h1>
-
-                        </div>
-
-                        {
-                            user ? (
-
-                                <div class="col-sm-9 ov-header__nav__profile ov-header__nav__profile--login text-end">
-
-                                    <div class="ov-avatar">
-
-                                        {
-                                            user.result.imageUr ? (                                        
-                                                <span class="ov-avatar__image"><img src={user.result.imageUr} alt={user.result.firstName} /></span>
-                                            ):(
-                                            <span>{user.result.firstName.charAt(0)+user.result.lastName.charAt(0)}</span>
-                                            )
-
-                                        }
-
-                                    </div>
-
-                                    <span class="ov-button ov-button--logout" onClick={()=>logOut()}>LogOut</span>     
-                                
-                                </div>                         
-                            
-                            
-                            ): (
-
-                                <div class="col-sm-9 ov-nav__profile ov-nav__profile--login text-end">
-
-                                    <a class="ov-button ov-button--login" href="/auth">LogIn</a>                   
-
-                                </div> 
-
-                            )
-                        }            
+                        <h1><a href="/" onMouseEnter={()=>handleHover("Home")} onMouseLeave={()=>handleHover("No Activity")}>OsakaVinyl</a></h1>
 
                     </div>
 
-                 </div>                
+                    {
+                        user ? (
+
+                            <div className="ov-header__nav__primary__profile ov-header__nav__primary__profile--login">
+
+                                <ul>
+                                    <li onMouseEnter={()=>handleHover("Profile")} onMouseLeave={()=>handleHover("No Activity")}>
+                                        <span className="ov-avatar">
+
+                                            {
+                                                user.result.imageUr ? (                                        
+                                                    <span className="ov-avatar__image"><img src={user.result.imageUr} alt={user.result.firstName} /></span>
+                                                ):(
+                                                <span>{user.result.firstName.charAt(0)+user.result.lastName.charAt(0)}</span>
+                                                )
+
+                                            }
+
+                                        </span>
+                                    </li>
+
+                                    <li onMouseEnter={()=>handleHover("LogOut")} onMouseLeave={()=>handleHover("No Activity")}>
+                                        <span className="ov-button ov-button--logout" onClick={()=>logOut()}><i class="fa-solid fa-power-off"></i></span>     
+                                    </li>
+
+                                </ul>
+
+                                
+
+                                
+                            
+                            </div>                         
+                        
+                        
+                        ): (
+
+                            <div className="ov-header__nav__primary__profile ov-header__nav__primary__profile--login text-end">
+
+                                <ul>
+                                    <li onMouseEnter={()=>handleHover("Register")} onMouseLeave={()=>handleHover("No Activity")}>
+                                        <a className="ov-button ov-button--register" href="/auth"><i class="fa-solid fa-user-plus"></i></a>
+                                    </li>
+                                    <li onMouseEnter={()=>handleHover("LogIn")} onMouseLeave={()=>handleHover("No Activity")}>
+                                        <a className="ov-button ov-button--login" href="/auth"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                                    </li>
+                                </ul>                                                   
+
+                            </div> 
+
+                        )
+                    }                        
+
+                </div>
+
+                <div className="ov-header__nav__secondary">
+                    <ul>
+                        <li onMouseEnter={()=>handleHover("Vinyl Collection")}>
+                            <i className="fas fa-record-vinyl"></i>
+                        </li>
+                        <li onMouseEnter={()=>handleHover("Bands Section")} onMouseLeave={()=>handleHover("No Activity")}><i className="fas fa-guitar"></i></li>
+                        <li onMouseEnter={()=>handleHover("Spotify Panel")} onMouseLeave={()=>handleHover("No Activity")}><i className="fab fa-spotify"></i></li>
+                        <li onMouseEnter={()=>handleHover("Horror Movies")} onMouseLeave={()=>handleHover("No Activity")}><i className="fas fa-film"></i></li>
+                        <li onMouseEnter={()=>handleHover("Musician Section")} onMouseLeave={()=>handleHover("No Activity")}><i class="fa-solid fa-microphone-lines"></i></li>
+                        <li className="ov-list--image" onMouseEnter={()=>handleHover("Vinyl Collection")} onMouseLeave={()=>handleHover("No Activity")}> 
+                            <img src={osakaAvatar}/>
+                        </li>
+                    </ul>    
+                </div>                
 
             </nav>
+            <div class="ov-header__console">
+                {consoleValue}
+            </div>
            
         </header>
     )

@@ -13,7 +13,7 @@ const App = () => {
         
         <BrowserRouter>
 
-            <div class="osaka-vinyl">
+            <div className="osaka-vinyl">
                 
                 <Navbar/>
                 
