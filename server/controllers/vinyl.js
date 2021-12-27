@@ -21,16 +21,16 @@ export const createVinyl = async (req, res) => {
     try {
           
         if(!req.userId)  return res.status(500).send('Unauthenticated');
-
-        const newVinyl = new Vinyl( {... vinyl, uid: req.userId, createdAt: new Date().toISOString()});
-
+        
+        const newVinyl = new Vinyl( {... vinyl, uid: Mongoose.Types.ObjectId(req.userId), createdAt: new Date().toISOString()});
+       
         await newVinyl.save();
-
+      
         res.status(201).json(newVinyl);
         
 
     }catch(error){
-
+        console.group(error);
         res.status(409).json({ message: error });
 
     }

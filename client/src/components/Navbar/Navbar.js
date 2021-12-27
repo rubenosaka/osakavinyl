@@ -59,13 +59,13 @@ const Navbar = () => {
 
                                 <ul>
                                     <li onMouseEnter={()=>handleHover("Profile")} onMouseLeave={()=>handleHover("No Activity")}>
-                                        <span className="ov-avatar">
+                                        <span className="ov-avatar ov-avatar--no-margin">
 
                                             {
-                                                user.result.imageUr ? (                                        
-                                                    <span className="ov-avatar__image"><img src={user.result.imageUr} alt={user.result.firstName} /></span>
+                                                user.result.imageUrl ? (                                        
+                                                    <span className="ov-avatar__image"><img src={user.result.imageUrl} alt={user.result.firstName ? user.result.firstName : "User profile avatar"} /></span>
                                                 ):(
-                                                <span>{user.result.firstName.charAt(0)+user.result.lastName.charAt(0)}</span>
+                                                <span className="ov-avatar__letters">{user.result.firstName.charAt(0)+user.result.lastName.charAt(0)}</span>
                                                 )
 
                                             }

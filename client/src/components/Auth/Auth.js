@@ -6,7 +6,7 @@ import { GoogleLogin } from 'react-google-login';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import Icon from './icon';
-import { signIn, signUp } from '../../actions/auth';
+import { signIn, signUp, googleUser } from '../../actions/auth';
 import { AUTH } from '../../constants/actionTypes';
 import Input from './Input';
 
@@ -41,16 +41,16 @@ const Auth = () => {
     }
 
     const googleSuccess = async (res) => {
-        console.log(res);
+        
 
         const result = res?.profileObj;
         const token = res?.tokenId;
+
     
         try {
-            dispatch({ type: AUTH, data: { result: {...result, firstName: result?.givenName, lastName: result?.familyName}, token  }});
-    
-            navigate('/');
 
+            dispatch(googleUser({...result, firstName: result?.givenName, lastName: result?.familyName, tokenId: token}, navigate));
+  
         } catch (error) {
 
           console.log(error);

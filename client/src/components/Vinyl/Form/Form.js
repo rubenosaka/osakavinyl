@@ -51,9 +51,9 @@ const Form = ({currentId, setCurrentId}) =>{
 
 
     return (
-        <Paper className={classes.paper}>
+        <div className="ov-box">
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handelSubmit}>
-                <Typography variant="h6">{currentId ? 'Update' : 'Add'} Vinyl</Typography>
+                <h4>{currentId ? 'Update' : 'Add'} Vinyl</h4>
     
                 <TextField 
                     name="name"
@@ -102,7 +102,7 @@ const Form = ({currentId, setCurrentId}) =>{
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
       
             </form>
-        </Paper>
+        </div>
     );
 }
 

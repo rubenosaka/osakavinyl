@@ -25,13 +25,11 @@ const VinylList = () => {
         <Grow in>
             <section className="ov-section">
                 <div className="row"> 
-                    <div className={!user ? "col-sm-12" : "col-sm-8"}>
-                        <List setCurrentId={setCurrentId} />
-                    </div>
+              
                     {
                         user ? (
                    
-                            <div className={!user ? "col-sm-12" : "col-sm-4"}>
+                            <div className={!user ? "col-sm-12" : "order-lg-2 col-xl-4 col-lg-6 col-md-12"}>
                                 <Form currentId={currentId} setCurrentId={setCurrentId}/>
                             </div>
                         
@@ -39,6 +37,9 @@ const VinylList = () => {
                             <></>
                         )
                     }
+                    <div className={!user ? "col-sm-12" : "order-lg-1 col-xl-8 col-lg-6 col-md-12"}>
+                        <List setCurrentId={setCurrentId} />
+                    </div>
                 </div>
             </section>
         </Grow> 

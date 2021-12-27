@@ -81,3 +81,45 @@ export const signUp = async (req, res) => {
 
     }
 };
+
+
+
+export const googleUser = async (req, res) => {
+
+    const {email, firstName, lastName, googleId, imageUrl, tokenId } = req.body;
+
+    console.log(req.body);
+
+    try {
+
+        const existingUser = await Users.findOneAndUpdate(email, { $set: { googleId }});
+
+        console.log(existingUser);
+
+        if(existingUser){
+ 
+            const token = jwt.sign({email: existingUser.email, id: existingUser._id}, process.env.SECRET, {expiresIn: "1h"});    
+
+            res.status(200).json({result: {... existingUser, imageUrl, token: tokenId}, token});
+
+        }else{
+
+            const hashedPassword = await bcrypt.hash(googleId, 12);
+
+            const result = await Users.create({email, password:hashedPassword, firstName, lastName, googleId});    
+   
+            const token = jwt.sign({email: result.email, id: result._id}, process.env.SECRET, {expiresIn: "1h"});     
+              
+            res.status(201).json({result:{... result,  token: tokenId}, token});
+
+        }    
+
+    }catch(error){
+
+        console.log(error);
+
+        res.status(500).json({ message: 'Something went wrong.' });
+
+
+    }
+};

@@ -21,6 +21,7 @@ const usersSchema = mongoose.Schema({
         type: String, 
     },
     instagram_user: String,
+    googleId: String
 
 });
 

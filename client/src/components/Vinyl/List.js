@@ -21,7 +21,7 @@ const List = ({setCurrentId}) =>{
                             {
                                 vinylList.map((vinyl)=>(
 
-                                    <div key={vinyl._id} className={!user ? "col-sm-3" : "col-sm-4"}>
+                                    <div key={vinyl._id} className={!user ? "col-xl-3 col-lg-6 col-sm-3" : "col-xl-4 col-lg-6 col-sm-4"}>
                                         <Vinyl vinyl={vinyl} setCurrentId={setCurrentId}>
 
                                         </Vinyl>
@@ -31,9 +31,9 @@ const List = ({setCurrentId}) =>{
                         </div>
 
                     ) : (
-                        <Paper>
-                            There are no results
-                        </Paper>
+                        <span>
+                           Sorry but there are no results
+                        </span>
                     )
                 }
 

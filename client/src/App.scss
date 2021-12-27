@@ -83,6 +83,14 @@ body{
                 margin-right:10px;
             } 
 
+            &--no-margin{
+                display:inline-block;
+            } 
+
+            &__letters{
+                color:$secondaryColor;
+            }
+
         }
 
         /* Borders */

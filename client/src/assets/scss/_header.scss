@@ -79,8 +79,13 @@
                         display: inline-block;
                         width:100%;
                         border-right-width:1px;
-                        border-bottom-width:1px;    
-              
+                        border-bottom-width:0px;  
+
+                        img{
+                            margin-top:-6px;
+                        }
+                        
+                    
                     }
                 }       
 
