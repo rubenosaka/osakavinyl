@@ -4,14 +4,15 @@ const bandsSchema = mongoose.Schema({
     name: String,
     description: String,
     genres: [mongoose.ObjectId],
-    members: [mongoose.ObjectId],
-    pastMembers: [mongoose.ObjectId],
+    // members: [mongoose.ObjectId],
+    // pastMembers: [mongoose.ObjectId],
     uid: mongoose.ObjectId,
+    featured_image: String,
     images: [String],
     nationallity: String,
     initYear: Number,
     endYear: Number,    
-    albums: [mongoose.ObjetId]
+    // albums: [mongoose.ObjetId]
 
 }, { collection: 'bands' });
 

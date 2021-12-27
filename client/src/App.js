@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 import Navbar from './components/Navbar/Navbar';
 import VinylHome from './components/VinylHome/VinylHome';
+import BandsHome from './components/Bands/Home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Auth from './components/Auth/Auth';
 
@@ -33,6 +34,7 @@ const App = () => {
                         <Routes> 
 
                             <Route path="/" exact element={<VinylHome setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
+                            <Route path="/bands" exact element={<BandsHome setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
                             <Route path="/auth" element={<Auth/>}/>
                             
                         </Routes>

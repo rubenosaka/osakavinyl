@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Vinyl from './Vinyl/Vinyl'
+import Bands from './Bands/Bands'
 
 const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
     const vinylList = useSelector((state)=>state.vinyl);
@@ -21,14 +21,15 @@ const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
                                 vinylList.map((vinyl)=>(
 
                                     <div key={vinyl._id} className={!user ? "col-xl-3 col-lg-6 col-sm-3" : "col-xl-4 col-lg-6 col-sm-4"}>
-                                        <Vinyl 
+                                        
+                                        <Bands 
                                             vinyl={vinyl} 
                                             setCurrentId={setCurrentId} 
                                             setConsoleValue={setConsoleValue} 
                                             setExtraData={setExtraData}
                                         >
 
-                                        </Vinyl>
+                                        </Bands>
                                     </div>
                                 ))
                             }

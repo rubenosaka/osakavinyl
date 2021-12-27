@@ -14,10 +14,12 @@ app.use(cors());
 // import common from './routes/common.js';
 import usersRoutes from './routes/users.js';
 import vinylRoutes from './routes/vinyl.js';
+import bandsRoutes from './routes/bands.js';
 
 // // app.use('/', common);
 app.use('/users', usersRoutes); 
 app.use('/vinyl', vinylRoutes);
+app.use('/bands', bandsRoutes);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 

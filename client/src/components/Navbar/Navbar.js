@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import { useNavigate, useLocation  } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import {LOGOUT} from '../../constants/actionTypes';
-
+import { Button } from '@material-ui/core';
 import {useDispatch} from 'react-redux';
 import osakaAvatar from '../../assets/img/osaka_vinyl_avatar.jpg';
 import AboutMe from '../AboutMe/AboutMe';
@@ -105,7 +105,7 @@ const Navbar = ({consoleValue, setConsoleValue, extraData, setExtraData}) => {
                         <li onMouseEnter={()=>handleHover("Vinyl Collection")}>
                             <i className="fas fa-record-vinyl"></i>
                         </li>
-                        <li onMouseEnter={()=>handleHover("Bands Section")} onMouseLeave={()=>handleHover("No Activity")}><i className="fas fa-guitar"></i></li>
+                        <li onMouseEnter={()=>handleHover("Bands Section")} onMouseLeave={()=>handleHover("No Activity")}><Button component={Link} to="/bands"><i className="fas fa-guitar"></i></Button></li>
                         <li onMouseEnter={()=>handleHover("Spotify Panel")} onMouseLeave={()=>handleHover("No Activity")}><i className="fab fa-spotify"></i></li>
                         <li onMouseEnter={()=>handleHover("Horror Movies")} onMouseLeave={()=>handleHover("No Activity")}><i className="fas fa-film"></i></li>
                         <li onMouseEnter={()=>handleHover("Musician Section")} onMouseLeave={()=>handleHover("No Activity")}><i class="fa-solid fa-microphone-lines"></i></li>
