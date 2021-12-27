@@ -19,3 +19,4 @@ export const likeVinyl = (id) => API.patch(`/vinyl/${id}/likeVinyl`);
 export const signIn = (form) => API.post('/users/signIn', form);
 export const signUp = (form) => API.post('/users/signUp', form);
 export const googleUser = (googleData) => API.post('/users/googleUser', googleData);
+

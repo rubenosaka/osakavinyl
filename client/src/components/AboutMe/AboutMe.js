@@ -1,12 +1,11 @@
 import React from 'react'
 import osakaAvatar from '../../assets/img/osaka_vinyl_avatar.jpg';
-import "./AboutMe.scss";
 
 const AboutMe = () => {
     return (
-        <div className="ov-about-me">
+        <div className="ov-description">
             <img src={osakaAvatar} />
-            <div className="ov-about-me__content">
+            <div className="ov-description__content">
               
                 <h2>Ruben González Aranda</h2>
                 <h3>FullStack Developer</h3>

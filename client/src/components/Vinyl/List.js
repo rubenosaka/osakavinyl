@@ -4,7 +4,7 @@ import { Paper } from '@material-ui/core';
 
 import Vinyl from './Vinyl/Vinyl'
 
-const List = ({setCurrentId}) =>{
+const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
     const vinylList = useSelector((state)=>state.vinyl);
 
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -22,7 +22,12 @@ const List = ({setCurrentId}) =>{
                                 vinylList.map((vinyl)=>(
 
                                     <div key={vinyl._id} className={!user ? "col-xl-3 col-lg-6 col-sm-3" : "col-xl-4 col-lg-6 col-sm-4"}>
-                                        <Vinyl vinyl={vinyl} setCurrentId={setCurrentId}>
+                                        <Vinyl 
+                                            vinyl={vinyl} 
+                                            setCurrentId={setCurrentId} 
+                                            setConsoleValue={setConsoleValue} 
+                                            setExtraData={setExtraData}
+                                        >
 
                                         </Vinyl>
                                     </div>

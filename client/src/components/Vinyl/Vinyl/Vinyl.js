@@ -1,45 +1,62 @@
 import React from 'react';
-import {Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
-import ThumbUpIcon from '@material-ui/icons/ThumbUpAlt';
-import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import { Button } from '@material-ui/core';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 
-import useStyles from './styles';
+import './vinyl.scss';
 import { likeVinyl, deleteVinyl } from '../../../actions/vinyl';
+import SingleVinyl from '../Decription/Description';
 
-const Vinyl = ({vinyl, setCurrentId}) =>{
+const Vinyl = ({vinyl, setCurrentId, setConsoleValue, setExtraData}) =>{
 
     const dispatch = useDispatch();
-    const classes = useStyles();
+
+    const handleHover = (value)=>{
+
+        setConsoleValue(value ? '_'+value : 'no_activity');     
+
+    }
+
+    const handleExtra = (component)=>{
+
+        setExtraData(component ? component : false);     
+
+    }
 
     return (
-        <Card className={classes.card} >
-            <CardMedia className={classes.media} image={vinyl.image_vinyl} title={vinyl.name}/>
-            <div className={classes.overlay}>
-                <Typography variant="body2">{moment(vinyl.createdAt).fromNow()}</Typography>
+        <div className="ov-card ov-card--vinyl ov-box"  onMouseEnter={()=>{handleHover("vinyl_collection_item"); handleExtra(<SingleVinyl vinyl={vinyl}/>)}} onMouseLeave={()=>{handleHover("No Activity"); handleExtra(false)}}>
 
-            </div>
-            <div className={classes.overlay2}>
-                <Button style={{ color: 'white'}} size="small" onClick={()=> setCurrentId(vinyl._id)}>
-                    <MoreHorizIcon fontSize="medium"/>
-                </Button>
-            </div>
-            <div className={classes.details}>
-                <Typography variant="body2" color="textSecondary" component="h2">{vinyl.genres.map((genre) => genre)}</Typography>
-                {vinyl.description}
-            </div>
-            <Typography className={classes.title} variant="h5" gutterBottom>{vinyl.name}{vinyl.year ? ` (${vinyl.year})` : ''}</Typography>
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">{vinyl.artist}</Typography>
+            <div className="ov-card__image ov-card--vinyl__image">
+                <img src={vinyl.image_vinyl} alt={vinyl.name} />
+            </div> 
+            
+            <div className="ov-card__content d-none">
+                <div className="ov-card__date">
+                    {moment(vinyl.createdAt).fromNow()}
+                </div>
 
-            </CardContent>
-            <CardActions className={classes.cardActions}>
-                <Button size="small" onClick={()=>{dispatch(likeVinyl(vinyl._id))}}><ThumbUpIcon fontSize="small"/> &nbsp; {vinyl.likeCount}</Button>
-                <Button size="small" onClick={()=>{dispatch(deleteVinyl(vinyl._id))}}><DeleteIcon fontSize="small"/> &nbsp;Delete</Button>
-            </CardActions>    
-        </Card>
+                <div className="ov-card__tags">
+                    {vinyl.genres.map((genre) => genre)}
+                </div>
+                <div className="ov-card__year">
+                    {vinyl.name}{vinyl.year ? ` (${vinyl.year})` : ''}
+                </div>
+                {vinyl.artist}
+                <p>{vinyl.description}</p>
+            </div>
+            <div className="ov-card__actions">
+
+                <ul>
+                    <li><Button size="small" onClick={()=> setCurrentId(vinyl._id)}><i class="fa-solid fa-eye"></i></Button></li>
+                    <li><Button size="small" onClick={()=> setCurrentId(vinyl._id)}><i class="fa-solid fa-ellipsis"></i></Button></li>
+                    <li><Button size="small" onClick={()=>{dispatch(likeVinyl(vinyl._id))}}><i class="fas fa-heart"></i>{vinyl.likeCount}</Button></li>
+                    <li><Button size="small" onClick={()=>{dispatch(deleteVinyl(vinyl._id))}}><i class="fas fa-trash-can"></i></Button></li>
+                </ul>
+               
+                
+            </div>
+
+        </div>
     );
 }
 

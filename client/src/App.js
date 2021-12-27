@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import Navbar from './components/Navbar/Navbar';
 import VinylHome from './components/VinylHome/VinylHome';
@@ -9,6 +9,9 @@ import "./App.scss";
 
 const App = () => {  
 
+    const [consoleValue, setConsoleValue] = useState('_No activity');
+    const [extraData, setExtraData] = useState(false);
+
     return (
         
         <BrowserRouter>
@@ -16,7 +19,12 @@ const App = () => {
             <div className="osaka-vinyl">
                 
                 <div className="ov-sidebar">
-                    <Navbar/>
+                    <Navbar 
+                        consoleValue={consoleValue} 
+                        setConsoleValue={setConsoleValue}
+                        extraData={extraData}
+                        setExtraData={setExtraData}
+                    />
                 </div>
                 <div className="ov-content">
 
@@ -24,7 +32,7 @@ const App = () => {
                             
                         <Routes> 
 
-                            <Route path="/" exact element={<VinylHome />}/>
+                            <Route path="/" exact element={<VinylHome setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
                             <Route path="/auth" element={<Auth/>}/>
                             
                         </Routes>

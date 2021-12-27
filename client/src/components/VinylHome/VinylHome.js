@@ -10,10 +10,10 @@ import List from '../Vinyl/List';
 import Form from '../Vinyl/Form/Form'; 
 
 
-const VinylList = () => {
+const VinylList = ({setConsoleValue, setExtraData}) => {
 
     const [currentId, setCurrentId] = useState(null);
-    // const classes = useStyles();
+
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
 
@@ -38,7 +38,7 @@ const VinylList = () => {
                         )
                     }
                     <div className={!user ? "col-sm-12" : "order-lg-1 col-xl-8 col-lg-6 col-md-12"}>
-                        <List setCurrentId={setCurrentId} />
+                        <List setCurrentId={setCurrentId} setConsoleValue={setConsoleValue}  setExtraData={setExtraData}/>
                     </div>
                 </div>
             </section>

@@ -3,11 +3,9 @@ import { useDispatch } from 'react-redux';
 import { Grid, Button } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import Icon from './icon';
 import { signIn, signUp, googleUser } from '../../actions/auth';
-import { AUTH } from '../../constants/actionTypes';
 import Input from './Input';
 
 import "./Auth.scss";
@@ -28,7 +26,6 @@ const Auth = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(form);
         if (isSignup) {
             dispatch(signUp(form, navigate));
         } else {

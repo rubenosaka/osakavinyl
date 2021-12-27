@@ -1,19 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation  } from 'react-router-dom';
 import {LOGOUT} from '../../constants/actionTypes';
 
 import {useDispatch} from 'react-redux';
 import osakaAvatar from '../../assets/img/osaka_vinyl_avatar.jpg';
 import AboutMe from '../AboutMe/AboutMe';
+import Typist from 'react-typist';
 
-const Navbar = () => {
+const Navbar = ({consoleValue, setConsoleValue, extraData, setExtraData}) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    const [consoleValue, setConsoleValue] = useState('_No activity');
-    const [extraData, setExtraData] = useState(false);
 
     const logOut = ()=>{
         dispatch({type:LOGOUT});
@@ -34,9 +33,9 @@ const Navbar = () => {
 
     useEffect(()=>{
         const token = user?.token;
-
+        
         setUser(JSON.parse(localStorage.getItem('profile')));
-    },[location]);
+    },[location, consoleValue]);
 
     return(
 
@@ -117,8 +116,11 @@ const Navbar = () => {
                 </div>                
 
             </nav>
-            <div class="ov-header__console">
-                {consoleValue}
+            <div class="ov-header__console">   
+    
+              <Typist key={consoleValue.toLowerCase().replace(/\s/g, '_')} loop={0}>{consoleValue.toLowerCase().replace(/\s/g, '_')}</Typist>
+
+               
             </div>
             {
                 extraData ?? (
