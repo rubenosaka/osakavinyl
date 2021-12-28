@@ -4,10 +4,10 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 
 import './Bands.scss';
-import { likeVinyl, deleteVinyl } from '../../../actions/vinyl';
-import SingleVinyl from '../Decription/Description';
+import { likeBand, deleteBand } from '../../../actions/bands';
+import SingleBand from '../Decription/Description';
 
-const Vinyl = ({vinyl, setCurrentId, setConsoleValue, setExtraData}) =>{
+const Vinyl = ({band, setCurrentId, setConsoleValue, setExtraData}) =>{
 
     const dispatch = useDispatch();
 
@@ -24,33 +24,33 @@ const Vinyl = ({vinyl, setCurrentId, setConsoleValue, setExtraData}) =>{
     }
 
     return (
-        <div className="ov-card ov-card--vinyl ov-box"  onMouseEnter={()=>{handleHover("vinyl_collection_item"); handleExtra(<SingleVinyl vinyl={vinyl}/>)}} onMouseLeave={()=>{handleHover("No Activity"); handleExtra(false)}}>
+        <div className="ov-card ov-card--vinyl ov-box"  onMouseEnter={()=>{handleHover("band"); handleExtra(<SingleBand band={band}/>)}} onMouseLeave={()=>{handleHover("No Activity"); handleExtra(false)}}>
 
             <div className="ov-card__image ov-card--vinyl__image">
-                <img src={vinyl.image_vinyl} alt={vinyl.name} />
+                <img src={band.featured_image} alt={band.name} />
             </div> 
             
-            <div className="ov-card__content d-none">
+            <div className="ov-card__content">
                 <div className="ov-card__date">
-                    {moment(vinyl.createdAt).fromNow()}
+                    {moment(band.createdAt).fromNow()}
                 </div>
 
                 <div className="ov-card__tags">
-                    {vinyl.genres.map((genre) => genre)}
+                    {band.genres.map((genre) => genre)}
                 </div>
                 <div className="ov-card__year">
-                    {vinyl.name}{vinyl.year ? ` (${vinyl.year})` : ''}
+                    {band.name}{band.initYear ? ` (${band.initYear})` : ''}
                 </div>
-                {vinyl.artist}
-                <p>{vinyl.description}</p>
+                {band.artist}
+                <p>{band.description}</p>
             </div>
             <div className="ov-card__actions">
 
                 <ul>
-                    <li><Button size="small" onClick={()=> setCurrentId(vinyl._id)}><i class="fa-solid fa-eye"></i></Button></li>
-                    <li><Button size="small" onClick={()=> setCurrentId(vinyl._id)}><i class="fa-solid fa-ellipsis"></i></Button></li>
-                    <li><Button size="small" onClick={()=>{dispatch(likeVinyl(vinyl._id))}}><i class="fas fa-heart"></i>{vinyl.likeCount}</Button></li>
-                    <li><Button size="small" onClick={()=>{dispatch(deleteVinyl(vinyl._id))}}><i class="fas fa-trash-can"></i></Button></li>
+                    <li><Button size="small" onClick={()=> setCurrentId(band._id)}><i class="fa-solid fa-eye"></i></Button></li>
+                    <li><Button size="small" onClick={()=> setCurrentId(band._id)}><i class="fa-solid fa-ellipsis"></i></Button></li>
+                    <li><Button size="small" onClick={()=>{dispatch(likeBand(band._id))}}><i class="fas fa-heart"></i>{band.likeCount}</Button></li>
+                    <li><Button size="small" onClick={()=>{dispatch(deleteBand(band._id))}}><i class="fas fa-trash-can"></i></Button></li>
                 </ul>
                
                 

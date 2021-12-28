@@ -8,22 +8,25 @@ import { getVinylList } from '../../actions/vinyl';
 
 import List from '../Vinyl/List';
 import Form from '../Vinyl/Form/Form'; 
-
+import Loader from '../../assets/img/loader_blocks.svg';
 
 const VinylList = ({setConsoleValue, setExtraData}) => {
 
     const [currentId, setCurrentId] = useState(null);
-
+    const [loading, setLoading] = useState(null);
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
 
     useEffect(()=>{
-        dispatch(getVinylList()); 
+        dispatch(getVinylList()).then(()=>{
+            setLoading(true);
+        }); 
     }, [currentId, dispatch]);
 
     return (
         <Grow in>
             <section className="ov-section">
+
                 <div className="row"> 
               
                     {
@@ -38,7 +41,19 @@ const VinylList = ({setConsoleValue, setExtraData}) => {
                         )
                     }
                     <div className={!user ? "col-sm-12" : "order-lg-1 col-xl-8 col-lg-6 col-md-12"}>
-                        <List setCurrentId={setCurrentId} setConsoleValue={setConsoleValue}  setExtraData={setExtraData}/>
+                        {
+                            loading ? (    
+                                <List setCurrentId={setCurrentId} setConsoleValue={setConsoleValue}  setExtraData={setExtraData}/>
+                            ):(
+
+                                <div className="ov-box p-5 text-center">
+                                    <h2>_LOADING...</h2>
+                                    <img src={Loader} />
+                                </div>                             
+
+                            )
+                        }
+                        
                     </div>
                 </div>
             </section>

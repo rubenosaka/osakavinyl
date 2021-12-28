@@ -2,22 +2,22 @@ import React from 'react'
 import moment from 'moment';
 import Typist from 'react-typist';
 
-const Description = ({vinyl}) => {
+const Description = ({band}) => {
 
     return (
 
         <div className="ov-description">
 
-            <img src={vinyl.image_vinyl} alt={vinyl.name} />
+            <img src={band.featured_image} alt={band.name} />
 
             <div className="ov-description__content">
 
-                <h2><Typist startDelay={500} key={vinyl.name}>Album Name: _{vinyl.name}</Typist></h2>
-                <h3><Typist startDelay={1200}key={vinyl.artist}>Artist: _{vinyl.artist}</Typist></h3>         
+                <h2><Typist startDelay={500} key={band._id}>Band Name: _{band.name}</Typist></h2>
+                <h3><Typist startDelay={1200}key={band._id}>Nationallity: _{band.nationallity.map((nationallity) => nationallity)}</Typist></h3>         
                 
-                <p>{vinyl.genres.map((genre) => genre)}</p>
-                <p>{moment(vinyl.createdAt).fromNow()}</p>
-                <p>{vinyl.description}</p>
+                <p>{band.genres.map((genre) => genre)}</p>
+                <p>{moment(band.createdAt).fromNow()}</p>
+                <p>{band.description}</p>
 
             </div>
 

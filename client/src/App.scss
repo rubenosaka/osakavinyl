@@ -29,6 +29,10 @@ $secondaryColor:#0c1045;
         border-width:1px;
         border-right-width:0px;
         font-size:20px;
+
+        &.disabled{
+            opacity:0.5;
+        }
     
         &:last-of-type{
             border-right-width:1px;

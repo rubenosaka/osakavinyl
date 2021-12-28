@@ -3,15 +3,18 @@ import mongoose from 'mongoose';
 const bandsSchema = mongoose.Schema({
     name: String,
     description: String,
-    genres: [mongoose.ObjectId],
+    genres: [String],
     // members: [mongoose.ObjectId],
     // pastMembers: [mongoose.ObjectId],
     uid: mongoose.ObjectId,
     featured_image: String,
     images: [String],
-    nationallity: String,
+    logo: String,
+    old_logo: String,
+    nationallity: [String],
     initYear: Number,
-    endYear: Number,    
+    endYear: Number,  
+ 
     // albums: [mongoose.ObjetId]
 
 }, { collection: 'bands' });

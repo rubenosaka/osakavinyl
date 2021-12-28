@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Filebase from 'react-file-base64';
-import { TextField, Button, Typography, Paper} from '@material-ui/core'
+import { TextField, Button} from '@material-ui/core'
 import {useDispatch} from 'react-redux';
 import {createVinyl, updateVinyl} from '../../../actions/vinyl'; 
 import useStyles from './styles';

@@ -13,3 +13,25 @@ export const getBands = async (req, res) => {
 
     }
 };
+
+export const createBand = async (req, res) => {
+
+    const vinyl = req.body;  
+      
+    try {
+          
+        if(!req.userId)  return res.status(500).send('Unauthenticated');
+        
+        const newBand = new Bands( {... vinyl, uid: Mongoose.Types.ObjectId(req.userId), createdAt: new Date().toISOString()});
+       
+        await newBand.save();
+      
+        res.status(201).json(newBand);
+        
+
+    }catch(error){
+        console.group(error);
+        res.status(409).json({ message: error });
+
+    }
+};

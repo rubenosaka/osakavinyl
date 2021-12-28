@@ -86,10 +86,10 @@ const Navbar = ({consoleValue, setConsoleValue, extraData, setExtraData}) => {
 
                                 <ul>
                                     <li onMouseEnter={()=>handleHover("Register")} onMouseLeave={()=>handleHover("No Activity")}>
-                                        <a className="ov-button ov-button--register" href="/auth"><i class="fa-solid fa-user-plus"></i></a>
+                                        <Button component={Link} className="ov-button ov-button--register" to="/auth"><i class="fa-solid fa-user-plus"></i></Button>
                                     </li>
                                     <li onMouseEnter={()=>handleHover("LogIn")} onMouseLeave={()=>handleHover("No Activity")}>
-                                        <a className="ov-button ov-button--login" href="/auth"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                                        <Button component={Link} className="ov-button ov-button--login" to="/auth"><i class="fa-solid fa-arrow-right-to-bracket"></i></Button>
                                     </li>
                                 </ul>                                                   
 
@@ -102,13 +102,22 @@ const Navbar = ({consoleValue, setConsoleValue, extraData, setExtraData}) => {
 
                 <div className="ov-header__nav__secondary">
                     <ul>
-                        <li onMouseEnter={()=>handleHover("Vinyl Collection")}>
-                            <i className="fas fa-record-vinyl"></i>
+                        <li onMouseEnter={()=>handleHover("Vinyl Collection")} onMouseLeave={()=>handleHover("No Activity")}>
+                            <Button 
+                                component={Link} 
+                                to={{
+                                    pathname: "/",                   
+                                    state: { bands: [], vinyls: false }
+                                }}
+                            >
+                                <i className="fas fa-record-vinyl"></i>
+                            </Button>
+                            
                         </li>
                         <li onMouseEnter={()=>handleHover("Bands Section")} onMouseLeave={()=>handleHover("No Activity")}><Button component={Link} to="/bands"><i className="fas fa-guitar"></i></Button></li>
-                        <li onMouseEnter={()=>handleHover("Spotify Panel")} onMouseLeave={()=>handleHover("No Activity")}><i className="fab fa-spotify"></i></li>
-                        <li onMouseEnter={()=>handleHover("Horror Movies")} onMouseLeave={()=>handleHover("No Activity")}><i className="fas fa-film"></i></li>
-                        <li onMouseEnter={()=>handleHover("Musician Section")} onMouseLeave={()=>handleHover("No Activity")}><i class="fa-solid fa-microphone-lines"></i></li>
+                        <li className="disabled" onMouseEnter={()=>handleHover("Spotify Panel")} onMouseLeave={()=>handleHover("No Activity")}><i className="fab fa-spotify"></i></li>
+                        <li className="disabled" onMouseEnter={()=>handleHover("Horror Movies")} onMouseLeave={()=>handleHover("No Activity")}><i className="fas fa-film"></i></li>
+                        <li className="disabled" onMouseEnter={()=>handleHover("Musician Section")} onMouseLeave={()=>handleHover("No Activity")}><i class="fa-solid fa-microphone-lines"></i></li>
                         <li className="ov-list--image" onMouseEnter={()=>{handleHover("About Me"); handleExtra(<AboutMe/>)}} onMouseLeave={()=>{handleHover("No Activity"); handleExtra(false)}}> 
                             <img src={osakaAvatar}/>
                         </li>

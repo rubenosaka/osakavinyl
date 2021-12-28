@@ -20,3 +20,8 @@ export const signIn = (form) => API.post('/users/signIn', form);
 export const signUp = (form) => API.post('/users/signUp', form);
 export const googleUser = (googleData) => API.post('/users/googleUser', googleData);
 
+export const fetchBands = () => API.get('/bands');
+export const createBand = (newBand) => API.post('/bands', newBand);
+export const updateBand = (id, updateBand) => API.patch(`/bands/${id}`, updateBand);
+export const deleteBand = (id) => API.delete(`/bands/${id}`);
+export const likeBand = (id) => API.patch(`/bands/${id}/likeBand`);

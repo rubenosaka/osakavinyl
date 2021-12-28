@@ -1,21 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import Filebase from 'react-file-base64';
-import { TextField, Button, Typography, Paper} from '@material-ui/core'
+import { TextField, Button} from '@material-ui/core'
 import {useDispatch} from 'react-redux';
-import {createVinyl, updateVinyl} from '../../../actions/vinyl'; 
-import useStyles from './styles';
+import {createBand, updateBand} from '../../../actions/bands'; 
 import { useSelector } from 'react-redux';
 
 const Form = ({currentId, setCurrentId}) =>{
 
-    const classes = useStyles();
-    const vinylItem = useSelector((state)=> currentId ? state.vinyl.find(p => p._id === currentId ) : null);
+    const bandItem = useSelector((state)=> currentId ? state.band.find(p => p._id === currentId ) : null);
 
-    const [vinylData, setVinylData] = useState({
+    const [bandData, setBandData] = useState({
         name: '',
-        artist: '',
-        year: '',
+        nationallity: '',
+        initYear: '',
+        endYear: '',
         genres: '',
+        logo: '',
+        old_logo: '',
+        featured_image:''
     })
  
     const dispatch = useDispatch()
@@ -24,26 +26,30 @@ const Form = ({currentId, setCurrentId}) =>{
         e.preventDefault();
 
         if(currentId){
-            dispatch(updateVinyl(currentId, vinylData));
+            dispatch(updateBand(currentId, bandData));
         }else{
-            dispatch(createVinyl(vinylData))
+            dispatch(createBand(bandData))
         }
         clear();
     }
 
     useEffect(() =>{
 
-        if(vinylItem) setVinylData(vinylItem);
+        if(bandItem) setBandData(bandItem);
 
-    }, [vinylItem])
+    }, [bandItem])
 
     const clear = () =>{
         setCurrentId(null);
-        setVinylData({
+        setBandData({
             name: '',
-            artist: '',
-            year: '',
+            nationallity: '',
+            initYear: '',
+            endYear: '',
             genres: '',
+            logo: '',
+            old_logo:'',
+            featured_image:''
         })
      
     }
@@ -52,53 +58,90 @@ const Form = ({currentId, setCurrentId}) =>{
 
     return (
         <div className="ov-box">
-            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handelSubmit}>
-                <h4>{currentId ? 'Update' : 'Add'} Vinyl</h4>
-    
-                <TextField 
-                    name="name"
-                    variant="outlined"
-                    label="Name"
-                    value={vinylData.name}
-                    onChange={(e)=>setVinylData({...vinylData, name: e.target.value})} 
-                    fullWidth
-                />
-  
+            <form autoComplete="off" noValidate onSubmit={handelSubmit}>
 
-                <TextField 
-                    name="artist"
-                    variant="outlined"
-                    label="Artist"
-                    value={vinylData.artist}
-                    onChange={(e)=>setVinylData({...vinylData, artist: e.target.value})} 
-                    fullWidth
-                />
-                <TextField 
-                    name="genres"
-                    variant="outlined"
-                    label="Genres (Comma separated)"
-                    value={vinylData.genres}
-                    onChange={(e)=>setVinylData({...vinylData, genres: e.target.value.split(',')})} 
-                    fullWidth
-                />
-                <TextField 
-                    name="year"
-                    variant="outlined"
-                    label="Year"
-                    value={vinylData.year}
-                    onChange={(e)=>setVinylData({...vinylData, year: e.target.value})} 
-                    fullWidth
-                />
-                <div className={classes.fileInput}>
-                    <Filebase type="file" multiple={false} onDone={({base64})=>setVinylData({...vinylData, image_osaka: base64})}></Filebase>
+                <div className="row mb-3">
+                    <div className="col-sm-12">
+                        <h4>{currentId ? 'Update' : 'Add'} Bands</h4>
+                    </div>
+                </div>                
+
+                <div className="row mb-3">
+                    <div className="col-sm-12">
+                        <TextField 
+                            name="name"
+                            variant="outlined"
+                            label="Name"
+                            value={bandData.name}
+                            onChange={(e)=>setBandData({...bandData, name: e.target.value})} 
+                            fullWidth
+                        />
+                    </div>
                 </div>
-                <div className={classes.fileInput}>
-                    <Filebase type="file" multiple={false} onDone={({base64})=>setVinylData({...vinylData, image_beer: base64})}></Filebase>
+
+                <div className="row mb-3">
+                    <div className="col-sm-12">
+                        <TextField 
+                            name="nationallity"
+                            variant="outlined"
+                            label="Nationallity (Comma separated)"
+                            value={bandData.artist}
+                            onChange={(e)=>setBandData({...bandData, nationallity: e.target.value.split(',')})} 
+                            fullWidth
+                        />
+                    </div>
                 </div>
-                <div className={classes.fileInput}>
-                    <Filebase type="file" multiple={false} onDone={({base64})=>setVinylData({...vinylData, image_vinyl: base64})}></Filebase>
+
+                <div className="row mb-3">
+                    <div className="col-sm-12">
+                        <TextField 
+                            name="genres"
+                            variant="outlined"
+                            label="Genres (Comma separated)"
+                            value={bandData.genres}
+                            onChange={(e)=>setBandData({...bandData, genres: e.target.value.split(',')})} 
+                            fullWidth
+                        />
+                    </div>
                 </div>
-                <Button className={classes.buttonSubmit} variant="contained" color="primary" type="submit" fullWidth>Submit</Button>
+
+                <div className="row mb-3">
+                    <div className="col-sm-12">
+                        <TextField 
+                            name="initYear"
+                            variant="outlined"
+                            label="Init Year"
+                            value={bandData.initYear}
+                            onChange={(e)=>setBandData({...bandData, initYear: e.target.value})} 
+                            fullWidth
+                        />
+                    </div>
+                </div>
+                
+                <div className="row mb-3">
+                    <div className="col-sm-12">
+                        <TextField 
+                            name="endYear"
+                            variant="outlined"
+                            label="End Year"
+                            value={bandData.endYear}
+                            onChange={(e)=>setBandData({...bandData, endYear: e.target.value})} 
+                            fullWidth
+                        />
+                    </div>
+                </div>   
+
+                <div >
+                    <Filebase type="file" multiple={false} onDone={({base64})=>setBandData({...bandData, featured_image: base64})}></Filebase>
+                </div>
+                <div >
+                    <Filebase type="file" multiple={false} onDone={({base64})=>setBandData({...bandData, logo: base64})}></Filebase>
+                </div>
+                <div >
+                    <Filebase type="file" multiple={false} onDone={({base64})=>setBandData({...bandData, old_logo: base64})}></Filebase>
+                </div>
+
+                <Button variant="contained" color="primary" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
       
             </form>
