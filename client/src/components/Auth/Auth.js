@@ -81,10 +81,10 @@ const Auth = () => {
 
                             <div className="col-sm-12 ">
 
-                                <div class="ov-border--bottom">
+                                <div className="ov-border--bottom">
                                     <span className="ov-avatar ov-avatar--inline">
 
-                                        <i class="fa-solid fa-lock"></i>
+                                        <i className="fa-solid fa-lock"></i>
 
                                     </span>
                                     {isSignup ? "Sign Up" : "Sign In"}

@@ -4,11 +4,12 @@ import { useDispatch } from 'react-redux';
 
 // import useStyles from './styles';
 
-import { getVinylList } from '../../actions/vinyl';
+import { getVinylList } from '../../../actions/vinyl';
+import { getBands } from '../../../actions/bands';
 
-import List from '../Vinyl/List';
-import Form from '../Vinyl/Form/Form'; 
-import Loader from '../../assets/img/loader_blocks.svg';
+import List from '../List';
+import Form from '../Form/Form'; 
+import Loader from '../../../assets/img/loader_blocks.svg';
 
 const VinylList = ({setConsoleValue, setExtraData}) => {
 
@@ -21,6 +22,8 @@ const VinylList = ({setConsoleValue, setExtraData}) => {
         dispatch(getVinylList()).then(()=>{
             setLoading(true);
         }); 
+        dispatch(getBands()); 
+
     }, [currentId, dispatch]);
 
     return (

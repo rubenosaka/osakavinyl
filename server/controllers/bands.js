@@ -3,7 +3,12 @@ import Bands from '../models/bands.js'
 
 export const getBands = async (req, res) => {
     try {
+
+        console.log("gettin' bands");
+
         const allBands = await Bands.find();
+
+        console.log(allBands);
 
         res.status(200).json(allBands);
 

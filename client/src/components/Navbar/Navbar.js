@@ -73,7 +73,7 @@ const Navbar = ({consoleValue, setConsoleValue, extraData, setExtraData}) => {
                                     </li>
 
                                     <li onMouseEnter={()=>handleHover("LogOut")} onMouseLeave={()=>handleHover("No Activity")}>
-                                        <span className="ov-button ov-button--logout" onClick={()=>logOut()}><i class="fa-solid fa-power-off"></i></span>     
+                                        <span className="ov-button ov-button--logout" onClick={()=>logOut()}><i className="fa-solid fa-power-off"></i></span>     
                                     </li>
 
                                 </ul>                          
@@ -86,10 +86,10 @@ const Navbar = ({consoleValue, setConsoleValue, extraData, setExtraData}) => {
 
                                 <ul>
                                     <li onMouseEnter={()=>handleHover("Register")} onMouseLeave={()=>handleHover("No Activity")}>
-                                        <Button component={Link} className="ov-button ov-button--register" to="/auth"><i class="fa-solid fa-user-plus"></i></Button>
+                                        <Button component={Link} className="ov-button ov-button--register" to="/auth"><i className="fa-solid fa-user-plus"></i></Button>
                                     </li>
                                     <li onMouseEnter={()=>handleHover("LogIn")} onMouseLeave={()=>handleHover("No Activity")}>
-                                        <Button component={Link} className="ov-button ov-button--login" to="/auth"><i class="fa-solid fa-arrow-right-to-bracket"></i></Button>
+                                        <Button component={Link} className="ov-button ov-button--login" to="/auth"><i className="fa-solid fa-arrow-right-to-bracket"></i></Button>
                                     </li>
                                 </ul>                                                   
 
@@ -117,7 +117,7 @@ const Navbar = ({consoleValue, setConsoleValue, extraData, setExtraData}) => {
                         <li onMouseEnter={()=>handleHover("Bands Section")} onMouseLeave={()=>handleHover("No Activity")}><Button component={Link} to="/bands"><i className="fas fa-guitar"></i></Button></li>
                         <li className="disabled" onMouseEnter={()=>handleHover("Spotify Panel")} onMouseLeave={()=>handleHover("No Activity")}><i className="fab fa-spotify"></i></li>
                         <li className="disabled" onMouseEnter={()=>handleHover("Horror Movies")} onMouseLeave={()=>handleHover("No Activity")}><i className="fas fa-film"></i></li>
-                        <li className="disabled" onMouseEnter={()=>handleHover("Musician Section")} onMouseLeave={()=>handleHover("No Activity")}><i class="fa-solid fa-microphone-lines"></i></li>
+                        <li className="disabled" onMouseEnter={()=>handleHover("Musician Section")} onMouseLeave={()=>handleHover("No Activity")}><i className="fa-solid fa-microphone-lines"></i></li>
                         <li className="ov-list--image" onMouseEnter={()=>{handleHover("About Me"); handleExtra(<AboutMe/>)}} onMouseLeave={()=>{handleHover("No Activity"); handleExtra(false)}}> 
                             <img src={osakaAvatar}/>
                         </li>
@@ -125,7 +125,7 @@ const Navbar = ({consoleValue, setConsoleValue, extraData, setExtraData}) => {
                 </div>                
 
             </nav>
-            <div class="ov-header__console">   
+            <div className="ov-header__console">   
     
               <Typist key={consoleValue.toLowerCase().replace(/\s/g, '_')} loop={0}>{consoleValue.toLowerCase().replace(/\s/g, '_')}</Typist>
 

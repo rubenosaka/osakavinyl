@@ -33,11 +33,6 @@ const Form = ({currentId, setCurrentId}) =>{
         clear();
     }
 
-    useEffect(() =>{
-
-        if(bandItem) setBandData(bandItem);
-
-    }, [bandItem])
 
     const clear = () =>{
         setCurrentId(null);

@@ -76,8 +76,8 @@ body{
 
     a, p, span, li, article, 
     h1, h2, h3, h4, h5, h6,
-    div, section, aside, input,
-    button, textarea, 
+    div, section, aside, input, 
+    select, button, textarea, 
     .MuiInputBase-input, .MuiFormLabel-root, 
     .MuiFormLabel-root.Mui-focused,
     input:-internal-autofill-selected,
@@ -160,6 +160,21 @@ body{
         }
 
         /* Forms */
+
+        .ov-select{
+            width: 100%;
+            padding: 10px;
+            background: rgba(0,0,0,0.4);
+            border-width:1px;
+            margin:8px;
+
+            option{
+                width: 100%;
+                padding: 10px;
+                background-color: rgba(0,0,0,0.4);
+                border-width:1px;
+            }
+        }
 
         input[type="text"], input[type="email"], input[type="password"]{
 

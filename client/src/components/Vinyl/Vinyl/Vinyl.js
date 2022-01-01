@@ -48,10 +48,10 @@ const Vinyl = ({vinyl, setCurrentId, setConsoleValue, setExtraData}) =>{
                 <div className="ov-card__actions">
 
                     <ul>
-                        <li><Button size="small" onClick={()=> setCurrentId(vinyl._id)}><i class="fa-solid fa-eye"></i></Button></li>
-                        <li><Button size="small" onClick={()=> setCurrentId(vinyl._id)}><i class="fa-solid fa-ellipsis"></i></Button></li>
-                        <li><Button size="small" onClick={()=>{dispatch(likeVinyl(vinyl._id))}}><i class="fas fa-heart"></i>{vinyl.likeCount}</Button></li>
-                        <li><Button size="small" onClick={()=>{dispatch(deleteVinyl(vinyl._id))}}><i class="fas fa-trash-can"></i></Button></li>
+                        <li><Button size="small" onClick={()=> setCurrentId(vinyl._id)}><i className="fa-solid fa-eye"></i></Button></li>
+                        <li><Button size="small" onClick={()=> setCurrentId(vinyl._id)}><i className="fa-solid fa-ellipsis"></i></Button></li>
+                        <li><Button size="small" onClick={()=>{dispatch(likeVinyl(vinyl._id))}}><i className="fas fa-heart"></i>{vinyl.likeCount}</Button></li>
+                        <li><Button size="small" onClick={()=>{dispatch(deleteVinyl(vinyl._id))}}><i className="fas fa-trash-can"></i></Button></li>
                     </ul>
                 
                     

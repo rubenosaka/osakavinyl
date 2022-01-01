@@ -29,7 +29,7 @@ const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
                                 <div className="row">
                                     {
                                         bandList.map((band)=>(
-                                                    <div key={band._id} className={!user ? "col-xl-3 col-lg-6 col-sm-3" : "col-xl-4 col-lg-6 col-sm-4"}>
+                                                    <div key={band._id} className={!user ?  "col-xl-2 col-lg-4 col-sm-3" : "col-xl-3 col-lg-6 col-sm-4"}>
                                                         <Bands 
                                                     band={band} 
                                                     setCurrentId={setCurrentId} 

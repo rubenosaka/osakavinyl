@@ -47,10 +47,10 @@ const Vinyl = ({band, setCurrentId, setConsoleValue, setExtraData}) =>{
             <div className="ov-card__actions">
 
                 <ul>
-                    <li><Button size="small" onClick={()=> setCurrentId(band._id)}><i class="fa-solid fa-eye"></i></Button></li>
-                    <li><Button size="small" onClick={()=> setCurrentId(band._id)}><i class="fa-solid fa-ellipsis"></i></Button></li>
-                    <li><Button size="small" onClick={()=>{dispatch(likeBand(band._id))}}><i class="fas fa-heart"></i>{band.likeCount}</Button></li>
-                    <li><Button size="small" onClick={()=>{dispatch(deleteBand(band._id))}}><i class="fas fa-trash-can"></i></Button></li>
+                    <li><Button size="small" onClick={()=> setCurrentId(band._id)}><i className="fa-solid fa-eye"></i></Button></li>
+                    <li><Button size="small" onClick={()=> setCurrentId(band._id)}><i className="fa-solid fa-ellipsis"></i></Button></li>
+                    <li><Button size="small" onClick={()=>{dispatch(likeBand(band._id))}}><i className="fas fa-heart"></i>{band.likeCount}</Button></li>
+                    <li><Button size="small" onClick={()=>{dispatch(deleteBand(band._id))}}><i className="fas fa-trash-can"></i></Button></li>
                 </ul>
                
                 
