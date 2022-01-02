@@ -1,4 +1,4 @@
-import { LIST, CREATE, DELETE, UPDATE } from '../constants/actionTypes';
+import { LIST, CREATE, DELETE, UPDATE, LIST_PAGINATION } from '../constants/actionTypes';
 
 const vinyl = (vinyl = [], action) =>{
 
@@ -6,7 +6,15 @@ const vinyl = (vinyl = [], action) =>{
 
         case LIST:
 
+            console.log(action);
+
             return action.payload;
+
+        case LIST_PAGINATION:
+
+            console.log(action);
+    
+            return {vinyl: action.payload, pages: action.pages};
         
         case CREATE:
 

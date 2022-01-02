@@ -35,6 +35,8 @@ const App = () => {
                         <Routes> 
 
                             <Route path="/" exact element={<VinylHome setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
+                            <Route path="/vinyl" exact element={<VinylHome setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
+                            <Route path="/vinyl/page/:page" exact element={<VinylHome setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
                             <Route path="/bands" exact element={<BandsHome setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
                             <Route path="/auth" element={<Auth/>}/>
                             

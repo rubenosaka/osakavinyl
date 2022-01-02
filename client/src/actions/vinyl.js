@@ -1,5 +1,6 @@
 import * as api from '../api';
-import { LIST, CREATE, DELETE, UPDATE } from '../constants/actionTypes';
+import { LIST, CREATE, DELETE, UPDATE, LIST_PAGINATION } from '../constants/actionTypes';
+import { PAGINATION } from '../constants/globalVars';
 // Action Creators
 
 export const getVinylList = () => async (dispatch) => {
@@ -18,6 +19,28 @@ export const getVinylList = () => async (dispatch) => {
 
 
 }
+
+export const getVinylPaginate = (page) => async (dispatch) => {
+
+    
+    try{
+
+        const { data } = await api.getVinylPaginate(page);
+        const dataAll = await api.fetchVinylList();
+
+        console.log(dataAll.data.length/PAGINATION);
+
+        dispatch({ type: LIST_PAGINATION, payload: data, pages: dataAll.data.length >= page ? Math.round(dataAll.data.length/PAGINATION) : 1 })
+
+    }catch(error){
+
+        console.log(error)
+
+    }
+
+
+}
+
 
 export const createVinyl = (vinyl) => async (dispatch) =>{
     try{

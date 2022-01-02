@@ -14,9 +14,29 @@ export const getVinyl = async (req, res) => {
     }
 };
 
+export const getVinylPaginate = async (req, res) => {
+    
+    const { page } = req.params;
+    const pagination = page > 0 ? page-1 : 0;
+
+    const number = 2;
+    
+    try {
+
+        const allVinyl = await Vinyl.find({},{},{skip:number*pagination, limit:number}).populate('band', 'name').exec();
+
+        res.status(200).json(allVinyl);
+
+    }catch(error){
+
+        res.status(404).json({ message: error });
+
+    }
+};
+
 export const createVinyl = async (req, res) => {
 
-    const vinyl = req.body;  
+    const vinyl = req.body; 
       
     try {
           

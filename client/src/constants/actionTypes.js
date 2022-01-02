@@ -2,6 +2,8 @@ export const CREATE = 'CREATE';
 export const DELETE = 'DELETE';
 export const UPDATE = 'UPDATE';
 export const LIST = 'LIST';
+export const LIST_PAGINATION = 'LIST_PAGINATION';
+
 
 /* BANDS */
 export const CREATE_BANDS = 'CREATE_BANDS';

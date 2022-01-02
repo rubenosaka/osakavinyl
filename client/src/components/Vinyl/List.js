@@ -1,12 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Grow } from '@material-ui/core';
+import { useParams } from "react-router-dom";
+
 import Vinyl from './Vinyl/Vinyl'
 import {ITEM_SIZE} from '../../constants/globalVars';
 
+
 const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
     
-    const vinylList = useSelector((state)=>state.vinyl);
+    const vinylList = useSelector((state)=> (state.vinyl) && state.vinyl.pages ? state.vinyl.vinyl : state.vinyl);
+    const pagination = useSelector((state)=> (state.vinyl) && state.vinyl.pages ? state.vinyl.pages : null);
+    const { page } = useParams();
 
     return (
         <Grow in>
@@ -18,9 +23,8 @@ const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
                         !vinylList.length ? <span>Sorry but there are no results</span> : vinylList.length > 0 ? (
                                         
                             <div className="row">
-                                {console.log(vinylList)}
-                                {
-                                    
+
+                                {                                    
 
                                     vinylList.map((vinyl)=>(                                        
 
@@ -46,8 +50,27 @@ const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
                         )
                     }
 
-                </div>            
-                
+                </div> 
+                     
+                {
+                    pagination ? 
+                        
+                        <div className="ov-box ov-pagination">
+                            <ul>
+                            {
+                                [...Array(pagination)].map((e, i) => {
+                                    let itin = i +1;
+                                    return(<li><a className={(page) && page == itin ? 'active' : ''} href={'/vinyl/page/'+itin}>{itin}</a></li>)
+                                })
+                            }
+                            </ul>
+                        </div>                        
+
+                    :
+
+                        <></> 
+
+                }
             </section>
         </Grow>
     );

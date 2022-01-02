@@ -8,13 +8,15 @@ const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
     
     const [loading, setLoading] = useState(false);
     const bandList = useSelector((state)=>state.bands);
+    const estado = useSelector((state)=>state);
 
+    console.log(estado);
     const user = JSON.parse(localStorage.getItem('profile'));
 
     useEffect(() => {
-        console.log(loading)
 
         setLoading(true)
+
     },[bandList])
 
     return (
@@ -48,7 +50,10 @@ const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
                                 </span>
                             )
                         }
-                            </div>            
+                            </div> 
+
+                       
+        
                     
                 </section>
             </Grow>

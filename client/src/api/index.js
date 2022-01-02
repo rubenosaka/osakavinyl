@@ -11,6 +11,7 @@ API.interceptors.request.use((req)=>{
 });
 
 export const fetchVinylList =  () => API.get('/vinyl');
+export const getVinylPaginate =  (page) => API.get(`/vinyl/page/${page}`);
 export const createVinyl = (newVinyl) => API.post('/vinyl', newVinyl);
 export const updateVinyl = (id, updatedVinyl) => API.patch(`/vinyl/${id}`, updatedVinyl);
 export const deleteVinyl = (id) => API.delete(`/vinyl/${id}`);

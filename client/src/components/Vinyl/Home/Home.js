@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Grow } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-
+import { useParams } from "react-router-dom";
 // import useStyles from './styles';
 
-import { getVinylList } from '../../../actions/vinyl';
+import { getVinylList, getVinylPaginate } from '../../../actions/vinyl';
 import { getBands } from '../../../actions/bands';
 
 import List from '../List';
@@ -17,15 +17,31 @@ const VinylList = ({setConsoleValue, setExtraData}) => {
     const [loading, setLoading] = useState(null);
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
-
+    
+    const { page } = useParams();
     useEffect(()=>{
-        
-        dispatch(getVinylList()).then(()=>{
-            setLoading(true);
-        }); 
+
+        if(page){
+
+            console.log(page);            
+
+            dispatch(getVinylPaginate(page)).then(()=>{
+              
+                setLoading(true);
+                
+            }); 
+
+        }else{
+
+            dispatch(getVinylList()).then(()=>{
+                setLoading(true);
+            }); 
+
+        }
+
         dispatch(getBands()); 
 
-    }, [currentId, dispatch]);
+    }, [currentId, page, dispatch]);
 
     return (
         <Grow in>

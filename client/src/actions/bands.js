@@ -8,8 +8,6 @@ export const getBands = () => async (dispatch) => {
 
         const { data } = await api.fetchBands();
 
-
-
         dispatch({ type: LIST_BANDS, payload: data })
 
     }catch(error){
