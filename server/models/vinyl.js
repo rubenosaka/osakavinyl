@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
 const vinylSchema = mongoose.Schema({
     name: String,
     album_name: String,
-    artist: String,
+    band: { type: Schema.Types.ObjectId, ref: 'Bands' },
     description: String,
     genres: [String],
     discography: String,
@@ -12,7 +13,7 @@ const vinylSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    image_osaka: String,
+    featured_image: String,
     image_beer: String,
     image_vinyl: String,
     likes: {

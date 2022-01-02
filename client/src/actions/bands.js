@@ -1,5 +1,5 @@
 import * as api from '../api';
-import { LIST, CREATE, DELETE, UPDATE } from '../constants/actionTypes';
+import { LIST_BANDS, CREATE_BANDS, DELETE_BANDS, UPDATE_BANDS } from '../constants/actionTypes';
 // Action Creators
 
 export const getBands = () => async (dispatch) => {
@@ -10,7 +10,7 @@ export const getBands = () => async (dispatch) => {
 
 
 
-        dispatch({ type: LIST, payload: data })
+        dispatch({ type: LIST_BANDS, payload: data })
 
     }catch(error){
 
@@ -24,11 +24,9 @@ export const getBands = () => async (dispatch) => {
 export const createBand = (band) => async (dispatch) =>{
     try{
 
-        console.log(band);
-
         const { data } = await api.createBand(band);
 
-        dispatch({ type: CREATE, payload: data })
+        dispatch({ type: CREATE_BANDS, payload: data })
 
     }catch(error){
 
@@ -42,7 +40,7 @@ export const updateBand = (id, band) => async (dispatch) =>{
 
         const { data } = await api.updateBand(id, band);
 
-        dispatch({ type: UPDATE, payload: data })
+        dispatch({ type: UPDATE_BANDS, payload: data })
 
     }catch(error){
 
@@ -56,7 +54,7 @@ export const deleteBand = (id) => async (dispatch) =>{
 
         await api.deleteBand(id);
 
-        dispatch({ type: DELETE, payload: id });
+        dispatch({ type: DELETE_BANDS, payload: id });
 
     }catch(error){
 
@@ -70,7 +68,7 @@ export const likeBand = (id) => async (dispatch) =>{
 
         const { data } = await api.likeBand(id);
 
-        dispatch({ type: UPDATE, payload: data })
+        dispatch({ type: UPDATE_BANDS, payload: data })
 
     }catch(error){
 

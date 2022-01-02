@@ -18,7 +18,10 @@ const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
                         !vinylList.length ? <span>Sorry but there are no results</span> : vinylList.length > 0 ? (
                                         
                             <div className="row">
+                                {console.log(vinylList)}
                                 {
+                                    
+
                                     vinylList.map((vinyl)=>(                                        
 
                                         <div key={vinyl._id} className={ITEM_SIZE}>

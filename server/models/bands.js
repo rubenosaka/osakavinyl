@@ -12,8 +12,10 @@ const bandsSchema = mongoose.Schema({
     logo: String,
     old_logo: String,
     nationallity: [String],
+    cities: [String],
     initYear: Number,
     endYear: Number,  
+    //associated_bands: [mongoose.ObjectId],
  
     // albums: [mongoose.ObjetId]
 

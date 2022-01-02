@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import { Grow } from '@material-ui/core';
 import Bands from './Bands/Bands'
+import {ITEM_SIZE} from '../../constants/globalVars';
 
 const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
     
@@ -29,14 +30,14 @@ const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
                                 <div className="row">
                                     {
                                         bandList.map((band)=>(
-                                                    <div key={band._id} className={!user ?  "col-xl-2 col-lg-4 col-sm-3" : "col-xl-3 col-lg-6 col-sm-4"}>
-                                                        <Bands 
+                                            <div key={band._id} className={ITEM_SIZE}>
+                                                <Bands 
                                                     band={band} 
                                                     setCurrentId={setCurrentId} 
                                                     setConsoleValue={setConsoleValue} 
                                                     setExtraData={setExtraData}
                                                 >
-                                                        </Bands>
+                                                </Bands>
                                             </div>
                                         ))
                                     }

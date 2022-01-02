@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 const Form = ({currentId, setCurrentId}) =>{
 
-    const bandItem = useSelector((state)=> currentId ? state.band.find(p => p._id === currentId ) : null);
+    const bandItem = useSelector((state)=> currentId ? state.bands.find(p => p._id === currentId ) : null);
 
     const [bandData, setBandData] = useState({
         name: '',
@@ -32,6 +32,12 @@ const Form = ({currentId, setCurrentId}) =>{
         }
         clear();
     }
+
+    useEffect(() =>{ 
+
+        if(bandItem) setBandData(bandItem);    
+
+    }, [bandItem]);
 
 
     const clear = () =>{
@@ -90,6 +96,19 @@ const Form = ({currentId, setCurrentId}) =>{
                 <div className="row mb-3">
                     <div className="col-sm-12">
                         <TextField 
+                            name="cities"
+                            variant="outlined"
+                            label="Cities"
+                            value={bandData.city}
+                            onChange={(e)=>setBandData({...bandData, Cities:  e.target.value.split(',')})} 
+                            fullWidth
+                        />
+                    </div>
+                </div>   
+
+                <div className="row mb-3">
+                    <div className="col-sm-12">
+                        <TextField 
                             name="genres"
                             variant="outlined"
                             label="Genres (Comma separated)"
@@ -124,16 +143,40 @@ const Form = ({currentId, setCurrentId}) =>{
                             fullWidth
                         />
                     </div>
-                </div>   
+                </div>
 
-                <div >
-                    <Filebase type="file" multiple={false} onDone={({base64})=>setBandData({...bandData, featured_image: base64})}></Filebase>
+                 <div className="row mb-3">
+                    <div className="col-sm-12">
+                        <TextField 
+                            name="web"
+                            variant="outlined"
+                            label="Webpage"
+                            value={bandData.web}
+                            onChange={(e)=>setBandData({...bandData, web: e.target.value})} 
+                            fullWidth
+                        />
+                    </div>
                 </div>
-                <div >
-                    <Filebase type="file" multiple={false} onDone={({base64})=>setBandData({...bandData, logo: base64})}></Filebase>
+
+                <div className="row mb-3">
+                    <div className="col-sm-12">
+                        <label>Featured Image</label><br/>
+                        <Filebase type="file" multiple={false} onDone={({base64})=>setBandData({...bandData, featured_image: base64})} />
+                    </div>
                 </div>
-                <div >
-                    <Filebase type="file" multiple={false} onDone={({base64})=>setBandData({...bandData, old_logo: base64})}></Filebase>
+
+                <div className="row mb-3">
+                    <div className="col-sm-12">
+                        <label>Logo</label><br/>
+                        <Filebase type="file" multiple={false} onDone={({base64})=>setBandData({...bandData, logo: base64})} />
+                    </div>
+                </div>
+
+                <div className="row mb-3">
+                    <div className="col-sm-12">
+                        <label>Old Logo</label><br/>
+                        <Filebase type="file" multiple={false} onDone={({base64})=>setBandData({...bandData, old_logo: base64})} />
+                    </div>
                 </div>
 
                 <Button variant="contained" color="primary" type="submit" fullWidth>Submit</Button>

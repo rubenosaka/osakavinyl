@@ -28,7 +28,7 @@ const Vinyl = ({vinyl, setCurrentId, setConsoleValue, setExtraData}) =>{
             <div className="ov-card ov-card--vinyl ov-box"  onMouseEnter={()=>{handleHover("vinyl_collection_item"); handleExtra(<SingleVinyl vinyl={vinyl}/>)}} onMouseLeave={()=>{handleHover("No Activity"); handleExtra(false)}}>
 
                 <div className="ov-card__image ov-card--vinyl__image">
-                    <img src={vinyl.image_vinyl} alt={vinyl.name} />
+                    <img src={vinyl.featured_image} alt={vinyl.name} />
                 </div> 
                 
                 <div className="ov-card__content d-none">

@@ -19,6 +19,7 @@ const VinylList = ({setConsoleValue, setExtraData}) => {
     const user = JSON.parse(localStorage.getItem('profile'));
 
     useEffect(()=>{
+        
         dispatch(getVinylList()).then(()=>{
             setLoading(true);
         }); 

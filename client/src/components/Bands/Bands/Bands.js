@@ -30,7 +30,7 @@ const Vinyl = ({band, setCurrentId, setConsoleValue, setExtraData}) =>{
                 <img src={band.featured_image} alt={band.name} />
             </div> 
             
-            <div className="ov-card__content">
+            <div className="ov-card__content d-none">
                 <div className="ov-card__date">
                     {moment(band.createdAt).fromNow()}
                 </div>

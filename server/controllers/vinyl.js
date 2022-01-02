@@ -3,7 +3,7 @@ import Vinyl from '../models/vinyl.js'
 
 export const getVinyl = async (req, res) => {
     try {
-        const allVinyl = await Vinyl.find();
+        const allVinyl = await Vinyl.find().populate('band', 'name').exec();
 
         res.status(200).json(allVinyl);
 
