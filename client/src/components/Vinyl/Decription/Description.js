@@ -1,14 +1,16 @@
 import React from 'react'
 import moment from 'moment';
 import Typist from 'react-typist';
-
+import GlitchClip from 'react-glitch-effect/core/GlitchClip';
 const Description = ({vinyl}) => {
 
     return (
 
         <div key={vinyl._id} className="ov-description">
-
-            <img src={vinyl.featured_image} alt={vinyl.name} />
+            <GlitchClip>
+                <img src={vinyl.featured_image} alt={vinyl.name} />
+            </GlitchClip>
+            
 
             <div className="ov-description__content">
 

@@ -1,6 +1,6 @@
 import { LIST, CREATE, DELETE, UPDATE, LIST_PAGINATION } from '../constants/actionTypes';
 
-const vinyl = (vinyl = [], action) =>{
+const vinyl = (values = [], action) =>{
 
     switch(action.type) {
 
@@ -11,26 +11,26 @@ const vinyl = (vinyl = [], action) =>{
             return action.payload;
 
         case LIST_PAGINATION:
-
-            console.log(action);
-    
-            return {vinyl: action.payload, pages: action.pages};
+               
+            return {list: action.payload, pages: action.pages};
         
         case CREATE:
 
-            return [...vinyl, action.payload];
+            // return [...values.list, action.payload];
 
         case UPDATE:
 
-            return vinyl.map((vinylItem) => vinylItem._id === action.payload._id ? action.payload : vinylItem);
+            return values.map((vinylItem) => vinylItem.values._id === action.payload._id ? action.payload : vinylItem);
 
-        case DELETE:
-    
-                return vinyl.filter((vinylItem) => vinylItem._id !== action.payload);
+        case DELETE:  
+                
+                console.log();
+
+                return values.list.filter((vinylItem) => vinylItem._id !== action.payload);
         
         default:
 
-            return vinyl;
+            return values;
 
     }
 

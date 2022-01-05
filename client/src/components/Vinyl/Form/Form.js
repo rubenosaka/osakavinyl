@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Filebase from 'react-file-base64';
 import { TextField, Button} from '@material-ui/core'
 import {useDispatch} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { createVinyl, updateVinyl } from '../../../actions/vinyl';
 import { useSelector } from 'react-redux';
 import Loader from '../../../assets/img/loader_blocks.svg';
@@ -11,6 +12,7 @@ const Form = ({currentId, setCurrentId}) =>{
     const vinylItem = useSelector((state)=> currentId ? state.vinyl.find(p => p._id === currentId ) : null);
     const bandsList = useSelector((state)=> state.bands);
     const state = useSelector((state)=> state);
+    const navigate = useNavigate();
 
     const [vinylData, setVinylData] = useState({
         name: '',
@@ -25,9 +27,9 @@ const Form = ({currentId, setCurrentId}) =>{
         e.preventDefault();
 
         if(currentId){
-            dispatch(updateVinyl(currentId, vinylData));
+            dispatch(updateVinyl(currentId, vinylData, navigate));
         }else{
-            dispatch(createVinyl(vinylData))
+            dispatch(createVinyl(vinylData, navigate))
         }
         clear();
     }

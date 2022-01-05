@@ -19,7 +19,7 @@ export const getVinylPaginate = async (req, res) => {
     const { page } = req.params;
     const pagination = page > 0 ? page-1 : 0;
 
-    const number = 2;
+    const number = 8;
     
     try {
 

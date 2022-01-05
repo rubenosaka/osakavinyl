@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
 // import useStyles from './styles';
 
-import { getVinylList, getVinylPaginate } from '../../../actions/vinyl';
+import { getVinylPaginate } from '../../../actions/vinyl';
 import { getBands } from '../../../actions/bands';
 
 import List from '../List';
@@ -19,28 +19,17 @@ const VinylList = ({setConsoleValue, setExtraData}) => {
     const user = JSON.parse(localStorage.getItem('profile'));
     
     const { page } = useParams();
-    useEffect(()=>{
+    useEffect(()=>{                   
 
-        if(page){
-
-            console.log(page);            
-
-            dispatch(getVinylPaginate(page)).then(()=>{
-              
-                setLoading(true);
-                
-            }); 
-
-        }else{
-
-            dispatch(getVinylList()).then(()=>{
-                setLoading(true);
-            }); 
-
-        }
-
+        dispatch(getVinylPaginate(page)).then(()=>{
+          
+            setLoading(true);
+            
+        });    
+             
         dispatch(getBands()); 
 
+  
     }, [currentId, page, dispatch]);
 
     return (

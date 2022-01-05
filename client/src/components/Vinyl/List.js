@@ -4,12 +4,12 @@ import { Grow } from '@material-ui/core';
 import { useParams } from "react-router-dom";
 
 import Vinyl from './Vinyl/Vinyl'
-import {ITEM_SIZE} from '../../constants/globalVars';
+import {ITEM_SIZE, PAGINATION} from '../../constants/globalVars';
 
 
 const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
-    
-    const vinylList = useSelector((state)=> (state.vinyl) && state.vinyl.pages ? state.vinyl.vinyl : state.vinyl);
+
+    const vinylList = useSelector((state)=> (state.vinyl) && state.vinyl.pages ? state.vinyl.list : state.vinyl);
     const pagination = useSelector((state)=> (state.vinyl) && state.vinyl.pages ? state.vinyl.pages : null);
     const { page } = useParams();
 
@@ -20,7 +20,7 @@ const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
                 <div className="ov-box">
 
                     {
-                        !vinylList.length ? <span>Sorry but there are no results</span> : vinylList.length > 0 ? (
+                        !vinylList ? <span>Sorry but there are no results</span> : vinylList.length > 0 ? (
                                         
                             <div className="row">
 
@@ -53,14 +53,14 @@ const List = ({setCurrentId, setConsoleValue, setExtraData}) =>{
                 </div> 
                      
                 {
-                    pagination ? 
+                    pagination && PAGINATION > pagination ? 
                         
                         <div className="ov-box ov-pagination">
                             <ul>
                             {
                                 [...Array(pagination)].map((e, i) => {
                                     let itin = i +1;
-                                    return(<li><a className={(page) && page == itin ? 'active' : ''} href={'/vinyl/page/'+itin}>{itin}</a></li>)
+                                    return(<li key={i}><a className={(page) && page === itin ? 'active' : ''} href={'/vinyl/page/'+itin}>{itin}</a></li>)
                                 })
                             }
                             </ul>

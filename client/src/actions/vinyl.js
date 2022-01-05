@@ -20,7 +20,7 @@ export const getVinylList = () => async (dispatch) => {
 
 }
 
-export const getVinylPaginate = (page) => async (dispatch) => {
+export const getVinylPaginate = (page = 0) => async (dispatch) => {
 
     
     try{
@@ -30,7 +30,7 @@ export const getVinylPaginate = (page) => async (dispatch) => {
 
         console.log(dataAll.data.length/PAGINATION);
 
-        dispatch({ type: LIST_PAGINATION, payload: data, pages: dataAll.data.length >= page ? Math.round(dataAll.data.length/PAGINATION) : 1 })
+        dispatch({ type: LIST_PAGINATION, payload: data, pages: dataAll.data.length >= page ? Math.ceil(dataAll.data.length/PAGINATION) : 1 })
 
     }catch(error){
 
@@ -42,10 +42,12 @@ export const getVinylPaginate = (page) => async (dispatch) => {
 }
 
 
-export const createVinyl = (vinyl) => async (dispatch) =>{
-    try{
+export const createVinyl = (vinyl, navigate) => async (dispatch) =>{
+    try{        
 
         const { data } = await api.createVinyl(vinyl);
+
+        navigate(0);
 
         dispatch({ type: CREATE, payload: data })
 
@@ -56,12 +58,16 @@ export const createVinyl = (vinyl) => async (dispatch) =>{
     }
 }
 
-export const updateVinyl = (id, vinyl) => async (dispatch) =>{
+export const updateVinyl = (id, vinyl, navigate) => async (dispatch) =>{
     try{       
 
         const { data } = await api.updateVinyl(id, vinyl);
 
-        dispatch({ type: UPDATE, payload: data })
+        navigate(0);
+
+        dispatch({ type: UPDATE, payload: data });
+
+
 
     }catch(error){
 
@@ -70,12 +76,15 @@ export const updateVinyl = (id, vinyl) => async (dispatch) =>{
     }
 }
 
-export const deleteVinyl = (id) => async (dispatch) =>{
+export const deleteVinyl = (id, navigate) => async (dispatch) =>{
     try{       
 
         await api.deleteVinyl(id);
 
+        navigate(0);
+
         dispatch({ type: DELETE, payload: id });
+        
 
     }catch(error){
 
