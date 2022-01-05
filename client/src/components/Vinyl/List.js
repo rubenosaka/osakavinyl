@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import { Grow, Button } from '@material-ui/core';
-import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { getVinylPaginate } from '../../actions/vinyl';
 import Vinyl from './Vinyl/Vinyl'
 import {ITEM_SIZE, PAGINATION} from '../../constants/globalVars';
-import Loader from '../../assets/img/loader_blocks.svg';
+import Loader from '../Loader/Loader';
 
 const List = ({setCurrentId, setConsoleValue, setExtraData, loading, setLoading}) =>{
 
@@ -65,10 +64,7 @@ const List = ({setCurrentId, setConsoleValue, setExtraData, loading, setLoading}
                         </div> 
                     ):(
 
-                        <div className="ov-box p-5 text-center">
-                            <h2>_LOADING...</h2>
-                            <img src={Loader} />
-                        </div>                             
+                       <Loader />                            
 
                     )
                 }

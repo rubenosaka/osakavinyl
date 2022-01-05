@@ -19,6 +19,7 @@ const vinyl = (values = [], action) =>{
         case CREATE:
 
             // return [...values.list, action.payload];
+            return [action.payload];
 
         case UPDATE:
 
