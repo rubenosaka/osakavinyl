@@ -25,12 +25,11 @@ export const getVinylPaginate = (page = 0) => async (dispatch) => {
     
     try{
 
+        console.log(page);
+
         const { data } = await api.getVinylPaginate(page);
-        const dataAll = await api.fetchVinylList();
 
-        console.log(dataAll.data.length/PAGINATION);
-
-        dispatch({ type: LIST_PAGINATION, payload: data, pages: dataAll.data.length >= page ? Math.ceil(dataAll.data.length/PAGINATION) : 1 })
+        dispatch({ type: LIST_PAGINATION, payload: data.list, pages: data.count >= page ? Math.ceil(data.count/PAGINATION) : 1 })
 
     }catch(error){
 

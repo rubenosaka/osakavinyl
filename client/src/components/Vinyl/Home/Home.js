@@ -9,7 +9,6 @@ import { getBands } from '../../../actions/bands';
 
 import List from '../List';
 import Form from '../Form/Form'; 
-import Loader from '../../../assets/img/loader_blocks.svg';
 
 const VinylList = ({setConsoleValue, setExtraData}) => {
 
@@ -51,16 +50,9 @@ const VinylList = ({setConsoleValue, setExtraData}) => {
                     }
                     <div className={!user ? "col-sm-12" : "order-lg-1 col-xl-8 col-lg-6 col-md-12"}>
                         {
-                            loading ? (    
-                                <List setCurrentId={setCurrentId} setConsoleValue={setConsoleValue}  setExtraData={setExtraData}/>
-                            ):(
-
-                                <div className="ov-box p-5 text-center">
-                                    <h2>_LOADING...</h2>
-                                    <img src={Loader} />
-                                </div>                             
-
-                            )
+                            
+                            <List setCurrentId={setCurrentId} setConsoleValue={setConsoleValue}  setExtraData={setExtraData} loading={loading} setLoading={setLoading}/>
+                            
                         }
                         
                     </div>

@@ -21,11 +21,21 @@ export const getVinylPaginate = async (req, res) => {
 
     const number = 8;
     
-    try {
+    try {     
+        
+        const list = await Vinyl.find({},{},{skip:number*pagination, limit:number}).populate('band', 'name').exec();
 
-        const allVinyl = await Vinyl.find({},{},{skip:number*pagination, limit:number}).populate('band', 'name').exec();
+        Vinyl.countDocuments({}, (err, count) => {
 
-        res.status(200).json(allVinyl);
+            const data = {
+                list,
+                count 
+            }
+
+            res.status(200).json(data);
+
+       });
+   
 
     }catch(error){
 

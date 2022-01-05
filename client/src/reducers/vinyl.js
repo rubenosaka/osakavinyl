@@ -11,6 +11,8 @@ const vinyl = (values = [], action) =>{
             return action.payload;
 
         case LIST_PAGINATION:
+
+            console.log(action)
                
             return {list: action.payload, pages: action.pages};
         
