@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Button, Grow } from '@material-ui/core';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './vinyl.scss';
-import { likeVinyl, deleteVinyl } from '../../../actions/vinyl';
+import { getVinylPaginate, likeVinyl, deleteVinyl } from '../../../actions/vinyl';
 import SingleVinyl from '../Decription/Description';
 
 const Vinyl = ({vinyl, setCurrentId, setConsoleValue, setExtraData}) =>{
@@ -13,7 +13,7 @@ const Vinyl = ({vinyl, setCurrentId, setConsoleValue, setExtraData}) =>{
     const uid = user.result._doc._id ? user.result._doc._id : null;
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const [like, setLike] = useState(vinyl.likes.length);
     const handleHover = (value)=>{
 
         setConsoleValue(value ? '_'+value : 'no_activity');     
@@ -24,6 +24,13 @@ const Vinyl = ({vinyl, setCurrentId, setConsoleValue, setExtraData}) =>{
 
         setExtraData(component ? component : false);     
 
+    }
+
+    const handleLike = (id) => {
+        dispatch(likeVinyl(id)).then((num)=>{
+            console.log(num);
+            setLike(num)
+        })
     }
    
     return (
@@ -59,7 +66,7 @@ const Vinyl = ({vinyl, setCurrentId, setConsoleValue, setExtraData}) =>{
                             (uid === vinyl.uid || user.role === "admin") ? (
                                 
                                 <>                                    
-                                    <li><Button size="small" onClick={()=>{dispatch(likeVinyl(vinyl._id))}}><i className="fas fa-heart"></i>{vinyl.likeCount}</Button></li>
+                                    <li><Button className="like-button" size="small" onClick={()=>handleLike(vinyl._id)}><span className="like-button__num">{like}</span> <i className="fas fa-heart"></i></Button></li>
                                     <li><Button size="small" onClick={()=> setCurrentId(vinyl._id)}><i className="fa-solid fa-ellipsis"></i></Button></li>                        
                                     <li><Button size="small" onClick={()=>{dispatch(deleteVinyl(vinyl._id, navigate))}}><i className="fas fa-trash-can"></i></Button></li>
                                     

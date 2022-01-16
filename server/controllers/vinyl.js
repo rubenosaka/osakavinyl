@@ -128,17 +128,17 @@ export const likeVinyl = async (req, res) => {
 
         const vinyl = await Vinyl.findById(id);
 
-        const index = vinyl.findIndex((id) => id = String(req.userId));
-
+        const index = vinyl.likes.findIndex((id) => id = String(req.userId));
+        console.log(vinyl.likes);
+        console.log(index);
         if(index === -1){
             vinyl.likes.push(req.userId);
         }else{
             vinyl.likes = vinyl.likes.filter((id) => id !== String(req.userId));
         }
-
+        console.log(vinyl.likes);
         const updatedVinyl = await Vinyl.findByIdAndUpdate(id, vinyl, { new : true });
-
-    
+        console.log(updatedVinyl.likes);
         res.json(updatedVinyl);
         
 

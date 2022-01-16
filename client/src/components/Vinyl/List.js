@@ -45,7 +45,7 @@ const List = ({setCurrentId, setConsoleValue, setExtraData, loading, setLoading}
                                                         vinyl={vinyl} 
                                                         setCurrentId={setCurrentId} 
                                                         setConsoleValue={setConsoleValue} 
-                                                        setExtraData={setExtraData}
+                                                        setExtraData={setExtraData}                         
                                                     />
                                                     
                                                 </div>

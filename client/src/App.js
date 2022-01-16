@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import Navbar from './components/Navbar/Navbar';
 import VinylHome from './components/Vinyl/Home/Home';
 import BandsHome from './components/Bands/Home/Home';
+import Admin from './components/Admin/Admin';
+import NotFound from './components/NotFound/NotFound';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Auth from './components/Auth/Auth';
 
@@ -38,8 +40,9 @@ const App = () => {
                             <Route path="/" exact element={<VinylHome setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
                             <Route path="/vinyl" exact element={<VinylHome setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
                             <Route path="/bands" exact element={<BandsHome setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
+                            <Route path="/admin" exact element={<Admin setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
                             <Route path="/auth" element={<Auth/>}/>
-                            
+                            <Route path="*" element={<NotFound setConsoleValue={setConsoleValue}  setExtraData={setExtraData} />}/>
                         </Routes>
                                                             
                     </div>

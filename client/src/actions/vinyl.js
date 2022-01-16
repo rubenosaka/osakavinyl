@@ -97,7 +97,11 @@ export const likeVinyl = (id) => async (dispatch) =>{
 
         const { data } = await api.likeVinyl(id);
 
+        console.log(data);
+
         dispatch({ type: UPDATE, payload: data })
+
+        return data.likes.length;
 
     }catch(error){
 

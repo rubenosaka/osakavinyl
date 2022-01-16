@@ -23,7 +23,9 @@ const vinyl = (values = [], action) =>{
 
         case UPDATE:
 
-            return values.map((vinylItem) => vinylItem.values._id === action.payload._id ? action.payload : vinylItem);
+            values.list = values.list.map((vinylItem) => vinylItem._id === action.payload._id ? action.payload : vinylItem);
+
+            return  values;
 
         case DELETE:  
                 

@@ -49,6 +49,7 @@ const VinylList = ({setConsoleValue, setExtraData}) => {
                         )
                     }
                     <div className={!user ? "col-sm-12" : "order-lg-1 col-xl-8 col-lg-6 col-md-12"}>
+                        
                         {
                             
                             <List setCurrentId={setCurrentId} setConsoleValue={setConsoleValue}  setExtraData={setExtraData} loading={loading} setLoading={setLoading}/>

@@ -9,14 +9,16 @@ import Loader from '../../../assets/img/loader_blocks.svg';
 
 const Form = ({currentId, setCurrentId}) =>{
    
-    const vinylItem = useSelector((state)=> currentId ? state.vinyl.find(p => p._id === currentId ) : null);
+    const vinylItem = useSelector((state)=> currentId ? state.vinyl.list.find(p => p._id === currentId ) : null);
     const bandsList = useSelector((state)=> state.bands);
     const state = useSelector((state)=> state);
     const navigate = useNavigate();
 
     const [vinylData, setVinylData] = useState({
         name: '',
-        artist: '',
+        band: {
+            _id: ''
+        },
         year: '',
         genres: '',
     })
@@ -44,7 +46,9 @@ const Form = ({currentId, setCurrentId}) =>{
         setCurrentId(null);
         setVinylData({
             name: '',
-            artist: '',
+            band: {
+                _id: ''
+            },
             year: '',
             genres: '',
         })
@@ -57,33 +61,41 @@ const Form = ({currentId, setCurrentId}) =>{
         <div className="ov-box">
             <form autoComplete="off" noValidate onSubmit={handelSubmit}>
                 <h4>{currentId ? 'Update' : 'Add'} Vinyl</h4>
-    
-                <TextField 
-                    name="name"
-                    variant="outlined"
-                    label="Name"
-                    value={vinylData.name}
-                    onChange={(e)=>setVinylData({...vinylData, name: e.target.value})} 
-                    fullWidth
-                />
+                    <div className="row mb-3">
+                        <div className="col-sm-12">
+                            <TextField 
+                                name="name"
+                                variant="outlined"
+                                label="Name"
+                                value={vinylData.name}
+                                onChange={(e)=>setVinylData({...vinylData, name: e.target.value})} 
+                                fullWidth
+                            />
+                        </div>
+                    </div>
+                    <div className="row mb-3">
+                        <div className="col-sm-12">
+                            {
+                                bandsList && bandsList.length && bandsList.length > 0 ?  (
+                                    <select name="band" className="ov-select" onChange={(e)=>setVinylData({...vinylData, band: e.target.value})} >
+                                    {
+                                        bandsList.map((band)=>(
+                                            <option key={band._id} value={band._id} selected={ band._id === vinylData.band._id ? true : false }>{band.name}</option>
+                                            
+                                        ))
+                                    }
+                                    </select>
+                                ) : (
+                                    <div className="ov-box p-5 text-center ov-box--loader ov-box--loader--sm">
+                                        <h2>_LOADING...</h2>
+                                        <img src={Loader} />
+                                    </div>
+                                    )
+                            }
+                        </div>
+                    </div>
  
-                        {
-                            bandsList && bandsList.length && bandsList.length > 0 ?  (
-                                <select name="band" className="ov-select" onChange={(e)=>setVinylData({...vinylData, band: e.target.value})} >
-                                {
-                                    bandsList.map((band)=>(
-                                        <option key={band._id} value={band._id}>{band.name}</option>
-                                        
-                                    ))
-                                }
-                                </select>
-                            ) : (
-                                <div className="ov-box p-5 text-center ov-box--loader ov-box--loader--sm">
-                                    <h2>_LOADING...</h2>
-                                    <img src={Loader} />
-                                </div>
-                                )
-                        }
+                        
                 
                 <div className="row mb-3">
                     <div className="col-sm-12">
